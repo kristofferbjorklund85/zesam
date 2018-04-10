@@ -1,4 +1,4 @@
-package zesam.zesam;
+package zesam.src;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

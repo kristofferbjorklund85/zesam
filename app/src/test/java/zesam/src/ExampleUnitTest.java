@@ -1,4 +1,4 @@
-package zesam.zesam;
+package zesam.src;
 
 import org.junit.Test;
 
