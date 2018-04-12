@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -51,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray array) {
-                        Log.d("Volley Success", "Downloaded JSONArray");
-                        Toast.makeText(ctx, "Success!", Toast.LENGTH_SHORT).show();
+                        //Log.d("Volley Success", "Downloaded JSONArray");
                         initSpinner(array);
                     }
                 }, new Response.ErrorListener() {
@@ -71,16 +72,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initSpinner(JSONArray array) {
-        List<String> spinnerArray =  new ArrayList<String>();
+        List<Company> spinnerArray =  new ArrayList<Company>();
 
         if (array != null) {
             int len = array.length();
             for (int i=0;i<len;i++){
                 try{
                     JSONObject object = array.getJSONObject(i);
-                    spinnerArray.add(object.getString("title"));
-                    Log.d("JSONArray", object.getString("title"));
-                    Log.d("JSONArray", array.get(i).toString());
+                    Company com = new Company(object.getString("id"), object.getString("title"));
+                    spinnerArray.add(com);
                 } catch (JSONException e) {
                     Log.d("JSONException", e.getMessage());
                     break;
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<Company> adapter = new ArrayAdapter<Company>(
                 this, android.R.layout.simple_spinner_item, spinnerArray);
 
         Log.d("TEST", adapter.toString());
@@ -98,9 +98,37 @@ public class MainActivity extends AppCompatActivity {
         sItems = (Spinner) findViewById(R.id.selectspinner);
         sItems.setAdapter(adapter);
 
+        sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Company company = (Company) parent.getItemAtPosition(position);
+
+                Log.d("Object", company.id + " " + company.name);
+
+            } // to close the onItemSelected
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
     }
 
 
 
+}
+
+class Company {
+    String id;
+    String name;
+
+    public Company(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
