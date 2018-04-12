@@ -16,6 +16,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
             int len = array.length();
             for (int i=0;i<len;i++){
                 try{
-                    spinnerArray.add(array.get(i).toString());
+                    JSONObject object = array.getJSONObject(i);
+                    spinnerArray.add(object.getString("title"));
+                    Log.d("JSONArray", object.getString("title"));
                     Log.d("JSONArray", array.get(i).toString());
                 } catch (JSONException e) {
                     Log.d("JSONException", e.getMessage());
