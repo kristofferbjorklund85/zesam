@@ -28,19 +28,22 @@ public class MainActivity extends AppCompatActivity {
 
     Spinner sItems;
     private Context ctx;
+    Company selectedCompany;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Intent intent = new Intent(this, MainActivity.class);
-
 
         ctx = this;
         getTest();
+    }
 
-        //startActivity(intent);
-        Log.d("MainActivity", "Started");
+    public void startSalesMeeting(View v) {
+        Intent intent = new Intent(this, SalesMeet.class);
+        intent.putExtra("id", selectedCompany.id);
+
+        startActivity(intent);
     }
 
 
@@ -88,11 +91,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
         ArrayAdapter<Company> adapter = new ArrayAdapter<Company>(
                 this, android.R.layout.simple_spinner_item, spinnerArray);
-
-        Log.d("TEST", adapter.toString());
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sItems = (Spinner) findViewById(R.id.selectspinner);
@@ -102,15 +102,14 @@ public class MainActivity extends AppCompatActivity {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Company company = (Company) parent.getItemAtPosition(position);
-
                 Log.d("Object", company.id + " " + company.name);
+                selectedCompany = company;
 
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
 
     }
 
