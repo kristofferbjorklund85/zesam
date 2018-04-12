@@ -19,7 +19,7 @@ import java.io.IOException;
 public class AudioRecorderTest extends AppCompatActivity {
     private static final String LOG_TAG = "AudioRecordTest";
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
-    private static String mFileName = null;
+    private static String mFileName = "Test";
 
     private RecordButton mRecordButton = null;
     private MediaRecorder mRecorder = null;
@@ -79,7 +79,7 @@ public class AudioRecorderTest extends AppCompatActivity {
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         mRecorder.setOutputFile(mFileName);
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_WB);
 
         try {
             mRecorder.prepare();
@@ -94,6 +94,7 @@ public class AudioRecorderTest extends AppCompatActivity {
         mRecorder.stop();
         mRecorder.release();
         mRecorder = null;
+        SpeechToText sToT = new SpeechToText(mFileName);
     }
 
     class RecordButton extends android.support.v7.widget.AppCompatButton {
@@ -179,5 +180,4 @@ public class AudioRecorderTest extends AppCompatActivity {
             mPlayer = null;
         }
     }
-
 }
