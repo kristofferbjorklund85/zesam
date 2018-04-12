@@ -1,6 +1,7 @@
 package zesam.src;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.cloud.speech.v1p1beta1.RecognitionAudio;
 import com.google.cloud.speech.v1p1beta1.RecognitionConfig;
@@ -17,11 +18,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class SpeechToText {
-    public SpeechToText(String fileName) {
-        try (SpeechClient speechClient = SpeechClient.create()) {
+public class SpeechToText extends AsyncTask<String, String, String> {
+    private static final String LOG_TAG = "SpeechToText";
 
-            Path path = Paths.get(fileName);
+    public String doInBackground(String... s) {
+        Log.d(LOG_TAG, "Start of constructor");
+        try (SpeechClient speechClient = SpeechClient.create()) {
+            Log.d(LOG_TAG, "Start of try");
+
+            Path path = Paths.get("Test");
             byte[] data = Files.readAllBytes(path);
             ByteString audioBytes = ByteString.copyFrom(data);
 
@@ -42,9 +47,10 @@ public class SpeechToText {
                 System.out.printf("Transcription: %s%n", alternative.getTranscript());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d(LOG_TAG, e.getMessage());
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.d(LOG_TAG, Log.getStackTraceString(e));
         }
+        return "ok";
     }
 }
