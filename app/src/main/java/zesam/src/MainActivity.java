@@ -46,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void startAudioTest(View v) {
+        Intent intent = new Intent(this, AudioRecorderTest.class);
+
+        startActivity(intent);
+    }
+
 
     public void getTest() {
 
