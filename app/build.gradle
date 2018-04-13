@@ -32,6 +32,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation project(':volley')
-    implementation 'com.google.cloud:google-cloud-speech:0.43.0-alpha'
-    implementation 'com.google.cloud:google-cloud-storage:1.24.1'
 }

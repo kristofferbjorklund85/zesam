@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public void getTest() {
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -109,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         VolleySingleton.getInstance(ctx).addToRequestQueue(jsonArrayRequest);
-
 
     }
 
@@ -149,11 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
     }
-
-
-
 }
 
 class Company {
