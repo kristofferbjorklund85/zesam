@@ -94,7 +94,6 @@ public class AudioRecorderTest extends AppCompatActivity {
         mRecorder.stop();
         mRecorder.release();
         mRecorder = null;
-        new SpeechToText().execute("String1", "String2", "String3");
     }
 
     class RecordButton extends android.support.v7.widget.AppCompatButton {
