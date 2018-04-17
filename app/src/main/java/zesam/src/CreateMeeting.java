@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -102,6 +103,7 @@ public class CreateMeeting extends AppCompatActivity {
     }
 
     public void initDateSpinner(List dayArray, List monthArray, List yearArray) {
+        Log.d("initDate", String.valueOf(dayArray.size()));
         ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, dayArray);
         final ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(
@@ -128,7 +130,7 @@ public class CreateMeeting extends AppCompatActivity {
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                updateDateSpinner(getDay(monthAdapter.getPosition(sMonth)));
+                updateDateSpinner(getDay(monthAdapter.getPosition(monthSpinner.getSelectedItem().toString()) + 1));
             }
 
             @Override
@@ -140,6 +142,7 @@ public class CreateMeeting extends AppCompatActivity {
     }
 
     public void updateDateSpinner(List dayArray) {
+        Log.d("Spinner", "Update spinner start");
         ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, dayArray);
 
@@ -148,6 +151,7 @@ public class CreateMeeting extends AppCompatActivity {
         daySpinner = (Spinner) findViewById(R.id.day_spinner);
 
         daySpinner.setAdapter(dayAdapter);
+        Log.d("Spinner", "Update spinner end");
     }
 
     public List getDay() {
@@ -167,10 +171,12 @@ public class CreateMeeting extends AppCompatActivity {
         for(int i = daysInMonth; i >= 1; i--) {
             list.add(String.valueOf(i));
         }
+        Log.d("List in first get day", String.valueOf(list.size()));
         return list;
     }
 
     public List getDay(int month) {
+        Log.d("Month", String.valueOf(month));
         ArrayList<String> list = new ArrayList<>();
 
         YearMonth yearMonth = YearMonth.of(year, month);
@@ -179,6 +185,7 @@ public class CreateMeeting extends AppCompatActivity {
         for(int i = daysInMonth; i >= 1; i--) {
             list.add(String.valueOf(i));
         }
+        Log.d("List in second get day", String.valueOf(list.size()));
         return list;
     }
 
