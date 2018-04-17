@@ -61,11 +61,7 @@ public class CreateMeeting extends AppCompatActivity {
 
 
     public void setVoiceInputText(String text) {
-        inputArray.add(text);
-
-        for (String s : inputArray) {
-            textblock = textblock + s + "\n\n";
-        }
+        textblock = textblock + text + "\n\n";
 
         recordedText.setText(textblock);
     }
