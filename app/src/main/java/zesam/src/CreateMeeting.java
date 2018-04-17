@@ -67,7 +67,7 @@ public class CreateMeeting extends AppCompatActivity {
 
     public void showResult(View v) {
         Intent intent = new Intent(this, Result.class);
-        intent.putExtra("text", recordedText.getText());
+        intent.putExtra("text", recordedText.getText().toString());
 
         startActivity(intent);
     }
