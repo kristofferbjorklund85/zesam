@@ -59,11 +59,17 @@ public class CreateMeeting extends AppCompatActivity {
         }
     }
 
-
     public void setVoiceInputText(String text) {
         textblock = textblock + text + "\n\n";
 
         recordedText.setText(textblock);
+    }
+
+    public void showResult(View v) {
+        Intent intent = new Intent(this, Result.class);
+        intent.putExtra("text", recordedText.getText());
+
+        startActivity(intent);
     }
 
 }
