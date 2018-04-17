@@ -27,6 +27,8 @@ public class PickAccountSpinner extends AppCompatActivity {
 
     Spinner sItems;
     FakeData.Company selectedCompany;
+    FakeData fd;
+    String selectedContact;
 
     private Context ctx;
 
@@ -36,13 +38,13 @@ public class PickAccountSpinner extends AppCompatActivity {
         setContentView(R.layout.activity_pick_account_spinner);
 
         ctx = this;
-        FakeData fd = new FakeData();
-        initSpinner(fd.getCompanies());
+        fd = new FakeData();
+        initCompanySpinner(fd.getCompanies());
     }
 
 
 
-    public void initSpinner(List spinnerArray) {
+    public void initCompanySpinner(List spinnerArray) {
 
 
         ArrayAdapter<FakeData.Company> adapter = new ArrayAdapter<>(
@@ -58,6 +60,31 @@ public class PickAccountSpinner extends AppCompatActivity {
                 FakeData.Company company = (FakeData.Company) parent.getItemAtPosition(position);
                 Log.d("Object", company.id + " " + company.name);
                 selectedCompany = company;
+                initContactSpinner(fd.getContacts(company.name));
+
+            } // to close the onItemSelected
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public void initContactSpinner(List spinnerArray) {
+
+
+        ArrayAdapter<FakeData.Company> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sItems = (Spinner) findViewById(R.id.selectspinner2);
+        sItems.setAdapter(adapter);
+
+        sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String contactName = (String) parent.getItemAtPosition(position);
+                Log.d("ContactName: ", contactName);
+                selectedContact = contactName;
 
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent) {
@@ -67,10 +94,12 @@ public class PickAccountSpinner extends AppCompatActivity {
     }
 
 
-
     public void startSalesMeeting(View v) {
         Intent intent = new Intent(this, CreateMeeting.class);
-        intent.putExtra("id", selectedCompany.id);
+        intent.putExtra("compId", selectedCompany.id);
+        intent.putExtra("compName", selectedCompany.name);
+        intent.putExtra("contact", selectedContact);
+
 
         startActivity(intent);
     }

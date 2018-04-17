@@ -68,7 +68,7 @@
         android:ems="10"
         android:gravity="top"
         android:hint="Recorded text will appear here"
-        android:inputType="textCapSentences||textMultiLine"
+        android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/record_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -20,11 +20,13 @@ public class FakeData {
     }
 
 
-    public List getContacts() {
+    public List getContacts(String company) {
         ArrayList<String> list = new ArrayList<String>();
-        list.add("Pelle Jansson");
-        list.add("Kalle Jonsson");
-        list.add("Leif Olsson");
+        list.add("Pelle Jansson (" + company + ")");
+        list.add("Kalle Jonsson (" + company + ")");
+        list.add("Leif Olsson (" + company + ")");
+        list.add("Lisa Andersson (" + company + ")");
+        list.add("Ingemar Stenmark (" + company + ")");
 
         return list;
     }
