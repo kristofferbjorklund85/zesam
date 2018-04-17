@@ -14,6 +14,8 @@ public class CreateMeeting extends AppCompatActivity {
     private String companyId;
 
     private EditText recordedText;
+    private ArrayList<String> inputArray = new ArrayList<>();
+    private String textblock = "";
 
     private static final int REQ_CODE_SPEECH_INPUT = 100;
 
@@ -26,6 +28,7 @@ public class CreateMeeting extends AppCompatActivity {
         companyId = intent.getStringExtra("id");
 
         recordedText = (EditText) findViewById(R.id.recorded_text);
+        textblock = "";
     }
 
     public void startVoiceInput(View v) {
@@ -56,11 +59,9 @@ public class CreateMeeting extends AppCompatActivity {
         }
     }
 
-    ArrayList<String> inputArray = new ArrayList<>();
 
     public void setVoiceInputText(String text) {
         inputArray.add(text);
-        String textblock = "";
 
         for (String s : inputArray) {
             textblock = textblock + s + "\n\n";
