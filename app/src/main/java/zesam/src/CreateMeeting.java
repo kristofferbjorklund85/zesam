@@ -48,11 +48,25 @@ public class CreateMeeting extends AppCompatActivity {
             case REQ_CODE_SPEECH_INPUT: {
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    recordedText.setText(result.get(0));
+                    setVoiceInputText(result.get(0));
                 }
                 break;
             }
 
         }
     }
+
+    ArrayList<String> inputArray = new ArrayList<>();
+
+    public void setVoiceInputText(String text) {
+        inputArray.add(text);
+        String textblock = "";
+
+        for (String s : inputArray) {
+            textblock = textblock + s + "\n\n";
+        }
+
+        recordedText.setText(textblock);
+    }
+
 }
