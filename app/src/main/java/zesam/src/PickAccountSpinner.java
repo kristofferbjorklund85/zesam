@@ -26,7 +26,7 @@ import java.util.List;
 public class PickAccountSpinner extends AppCompatActivity {
 
     Spinner sItems;
-    Company selectedCompany;
+    FakeData.Company selectedCompany;
 
     private Context ctx;
 
@@ -36,27 +36,16 @@ public class PickAccountSpinner extends AppCompatActivity {
         setContentView(R.layout.activity_pick_account_spinner);
 
         ctx = this;
-        getTest();
+        FakeData fd = new FakeData();
+        initSpinner(fd.getCompanies());
     }
 
-    public void initSpinner(JSONArray array) {
-        List<Company> spinnerArray =  new ArrayList<>();
 
-        if (array != null) {
-            int len = array.length();
-            for (int i=0;i<len;i++){
-                try{
-                    JSONObject object = array.getJSONObject(i);
-                    Company com = new Company(object.getString("id"), object.getString("title"));
-                    spinnerArray.add(com);
-                } catch (JSONException e) {
-                    Log.d("JSONException", e.getMessage());
-                    break;
-                }
-            }
-        }
 
-        ArrayAdapter<Company> adapter = new ArrayAdapter<>(
+    public void initSpinner(List spinnerArray) {
+
+
+        ArrayAdapter<FakeData.Company> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -66,7 +55,7 @@ public class PickAccountSpinner extends AppCompatActivity {
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Company company = (Company) parent.getItemAtPosition(position);
+                FakeData.Company company = (FakeData.Company) parent.getItemAtPosition(position);
                 Log.d("Object", company.id + " " + company.name);
                 selectedCompany = company;
 
@@ -77,6 +66,8 @@ public class PickAccountSpinner extends AppCompatActivity {
         });
     }
 
+
+
     public void startSalesMeeting(View v) {
         Intent intent = new Intent(this, CreateMeeting.class);
         intent.putExtra("id", selectedCompany.id);
@@ -84,7 +75,9 @@ public class PickAccountSpinner extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void getTest() {
+
+
+    /*public void getTest() {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 "https://ghibliapi.herokuapp.com/films/",
@@ -93,7 +86,7 @@ public class PickAccountSpinner extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray array) {
                         //Log.d("Volley Success", "Downloaded JSONArray");
-                        initSpinner(array);
+                        convertJsonToArray(array);
                     }
                 }, new Response.ErrorListener() {
 
@@ -107,19 +100,26 @@ public class PickAccountSpinner extends AppCompatActivity {
         });
         VolleySingleton.getInstance(ctx).addToRequestQueue(jsonArrayRequest);
     }
+*/
 
-    class Company {
-        String id;
-        String name;
+    /*public void convertJsonToArray(JSONArray array) {
+        List<FakeData.Company> spinnerArray =  new ArrayList<>();
 
-        public Company(String id, String name) {
-            this.id = id;
-            this.name = name;
+        if (array != null) {
+            int len = array.length();
+            for (int i=0;i<len;i++){
+                try{
+                    JSONObject object = array.getJSONObject(i);
+                    FakeData.Company com = new FakeData.Company(object.getString("id"), object.getString("title"));
+                    spinnerArray.add(com);
+                } catch (JSONException e) {
+                    Log.d("JSONException", e.getMessage());
+                    break;
+                }
+            }
         }
 
-        @Override
-        public String toString() {
-            return name;
-        }
-    }
+        initSpinner(spinnerArray);
+    }*/
+
 }
