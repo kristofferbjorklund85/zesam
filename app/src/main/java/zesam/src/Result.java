@@ -3,6 +3,7 @@ package zesam.src;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,7 +24,11 @@ public class Result extends AppCompatActivity {
         resultText.setText(text);
     }
 
+    public void backToPickAccount(View v) {
+        Intent intent = new Intent(this, PickAccountSpinner.class);
 
+        startActivity(intent);
+    }
 
 
 
