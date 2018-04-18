@@ -2,42 +2,10 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/title_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="132dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="16dp"
-        android:elevation="5dp"
-        android:textSize="25dp"
-        android:fontFamily="monospace"
-        android:gravity="center"
-        android:text="ZESAM"
-        android:textColor="@color/zesamBlue"
-        app:layout_constraintBottom_toBottomOf="@+id/my_toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/my_toolbar" />
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="136dp"
-        android:elevation="4dp"
-        android:theme="@style/ToolBarStyle"
-        app:layout_constraintBottom_toTopOf="@+id/username_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-
-    </android.support.v7.widget.Toolbar>
+    <include layout="@layout/toolbar"/>
 
     <EditText
         android:id="@+id/username_text"
