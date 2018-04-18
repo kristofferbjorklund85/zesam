@@ -177,27 +177,27 @@ public class CreateMeeting extends AppCompatActivity {
 
     public ArrayAdapter<String> createDayAdapter(List dayArray) {
         ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, dayArray);
+                this, R.layout.spinner_item, dayArray);
 
-        dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dayAdapter.setDropDownViewResource(R.layout.spinner_item);
 
         return dayAdapter;
     }
 
     public ArrayAdapter<String> createMonthAdapter(List monthArray) {
         ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, monthArray);
+                this, R.layout.spinner_item, monthArray);
 
-        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        monthAdapter.setDropDownViewResource(R.layout.spinner_item);
 
         return monthAdapter;
     }
 
     public ArrayAdapter<String> createYearAdapter(List yearArray) {
         ArrayAdapter<String> yearAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, yearArray);
+                this, R.layout.spinner_item, yearArray);
 
-        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearAdapter.setDropDownViewResource(R.layout.spinner_item);
 
         return yearAdapter;
     }
