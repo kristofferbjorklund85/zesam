@@ -147,7 +147,7 @@ public class CreateMeeting extends AppCompatActivity {
         YearMonth yearMonth = YearMonth.of(year, month);
         int daysInMonth = yearMonth.lengthOfMonth();
 
-        for(int i = daysInMonth; i >= 1; i--) {
+        for(int i = 1; i <= daysInMonth; i++) {
             list.add(String.valueOf(i));
         }
         return list;
