@@ -26,6 +26,7 @@ import java.util.List;
 
 public class CreateMeeting extends AppCompatActivity {
     private String companyId;
+    private List list;
 
     Spinner daySpinner;
     Spinner monthSpinner;
@@ -52,6 +53,7 @@ public class CreateMeeting extends AppCompatActivity {
         Intent intent = getIntent();
 
         companyId = intent.getStringExtra("id");
+        list = intent.getStringArrayListExtra("");
 
         format = new SimpleDateFormat("dd/MM/yyyy");
 
