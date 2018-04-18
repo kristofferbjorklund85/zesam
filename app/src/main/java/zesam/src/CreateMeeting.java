@@ -20,7 +20,6 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -32,9 +31,14 @@ public class CreateMeeting extends AppCompatActivity {
     Spinner monthSpinner;
     Spinner yearSpinner;
 
+    ArrayAdapter<String> dayAdapter;
+    ArrayAdapter<String> monthAdapter;
+    ArrayAdapter<String> yearAdapter;
+
     int year;
     int day;
     String sMonth;
+    int nMonth;
 
     Date date;
     DateFormat format;
@@ -53,14 +57,14 @@ public class CreateMeeting extends AppCompatActivity {
         Intent intent = getIntent();
 
         companyId = intent.getStringExtra("id");
-        list = intent.getStringArrayListExtra("");
+        list = intent.getStringArrayListExtra("selected");
 
         format = new SimpleDateFormat("dd/MM/yyyy");
 
         recordedText = (EditText) findViewById(R.id.recorded_text);
         textblock = "";
-
-        initDateSpinner(getDay(), getMonth(), getYear());
+        setDates();
+        initDateSpinner(getDay(nMonth), getMonth(), getYear());
     }
 
     public void startVoiceInput(View v) {
@@ -105,34 +109,28 @@ public class CreateMeeting extends AppCompatActivity {
     }
 
     public void initDateSpinner(List dayArray, List monthArray, List yearArray) {
-        Log.d("initDate", String.valueOf(dayArray.size()));
-        ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, dayArray);
-        final ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, monthArray);
-        ArrayAdapter<String> yearAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, yearArray);
-
-        dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         daySpinner   = (Spinner) findViewById(R.id.day_spinner);
         monthSpinner = (Spinner) findViewById(R.id.month_spinner);
         yearSpinner  = (Spinner) findViewById(R.id.year_spinner);
+
+        dayAdapter = createDayAdapter(dayArray);
+        monthAdapter = createMonthAdapter(monthArray);
+        yearAdapter = createYearAdapter(yearArray);
 
         daySpinner.setAdapter(dayAdapter);
         monthSpinner.setAdapter(monthAdapter);
         yearSpinner.setAdapter(yearAdapter);
 
-        daySpinner.setSelection(dayAdapter.getPosition(String.valueOf(day)));
         monthSpinner.setSelection(monthAdapter.getPosition(String.valueOf(sMonth)));
         yearSpinner.setSelection(yearAdapter.getPosition(String.valueOf(year)));
 
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                updateDateSpinner(getDay(monthAdapter.getPosition(monthSpinner.getSelectedItem().toString()) + 1));
+                Log.d("Item selected", "Triggered");
+                daySpinner.setAdapter(createDayAdapter(getDay
+                        (monthAdapter.getPosition(monthSpinner.getSelectedItem().toString()) + 1)));
+                setDaySpinner();
             }
 
             @Override
@@ -143,42 +141,7 @@ public class CreateMeeting extends AppCompatActivity {
 
     }
 
-    public void updateDateSpinner(List dayArray) {
-        Log.d("Spinner", "Update spinner start");
-        ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, dayArray);
-
-        dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        daySpinner = (Spinner) findViewById(R.id.day_spinner);
-
-        daySpinner.setAdapter(dayAdapter);
-        Log.d("Spinner", "Update spinner end");
-    }
-
-    public List getDay() {
-        DateTimeFormatter dtfd = DateTimeFormatter.ofPattern("dd");
-        DateTimeFormatter dtfm = DateTimeFormatter.ofPattern("MMMM");
-        DateTimeFormatter dtfnm = DateTimeFormatter.ofPattern("MM");
-        localDate = LocalDate.now();
-        ArrayList<String> list = new ArrayList<>();
-
-        day = Integer.parseInt(dtfd.format(localDate));
-        sMonth = dtfm.format(localDate);
-        int nMonth = Integer.parseInt(dtfnm.format(localDate));
-
-        YearMonth yearMonth = YearMonth.of(year, nMonth);
-        int daysInMonth = yearMonth.lengthOfMonth();
-
-        for(int i = daysInMonth; i >= 1; i--) {
-            list.add(String.valueOf(i));
-        }
-        Log.d("List in first get day", String.valueOf(list.size()));
-        return list;
-    }
-
     public List getDay(int month) {
-        Log.d("Month", String.valueOf(month));
         ArrayList<String> list = new ArrayList<>();
 
         YearMonth yearMonth = YearMonth.of(year, month);
@@ -187,7 +150,6 @@ public class CreateMeeting extends AppCompatActivity {
         for(int i = daysInMonth; i >= 1; i--) {
             list.add(String.valueOf(i));
         }
-        Log.d("List in second get day", String.valueOf(list.size()));
         return list;
     }
 
@@ -197,14 +159,60 @@ public class CreateMeeting extends AppCompatActivity {
     }
 
     public List getYear() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy");
         ArrayList<String> list = new ArrayList<>();
-
-        year = Integer.parseInt(dtf.format(localDate));
 
         for(int i = year; i >= 1990; i--) {
             list.add(String.valueOf(i));
         }
         return list;
+    }
+
+    public void setDaySpinner() {
+        if(day < daySpinner.getAdapter().getCount()) {
+            daySpinner.setSelection(dayAdapter.getPosition(String.valueOf(day)));
+        } else {
+            daySpinner.setSelection(1);
+        }
+    }
+
+    public ArrayAdapter<String> createDayAdapter(List dayArray) {
+        ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, dayArray);
+
+        dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        return dayAdapter;
+    }
+
+    public ArrayAdapter<String> createMonthAdapter(List monthArray) {
+        ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, monthArray);
+
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        return monthAdapter;
+    }
+
+    public ArrayAdapter<String> createYearAdapter(List yearArray) {
+        ArrayAdapter<String> yearAdapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, yearArray);
+
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        return yearAdapter;
+    }
+
+    public void setDates() {
+        DateTimeFormatter dtfd = DateTimeFormatter.ofPattern("dd");
+        DateTimeFormatter dtfm = DateTimeFormatter.ofPattern("MMMM");
+        DateTimeFormatter dtfnm = DateTimeFormatter.ofPattern("MM");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy");
+
+        localDate = LocalDate.now();
+
+        day = Integer.parseInt(dtfd.format(localDate));
+        sMonth = dtfm.format(localDate);
+        nMonth = Integer.parseInt(dtfnm.format(localDate));
+        year = Integer.parseInt(dtf.format(localDate));
     }
 }
