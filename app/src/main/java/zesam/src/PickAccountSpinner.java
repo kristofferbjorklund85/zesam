@@ -96,10 +96,12 @@ public class PickAccountSpinner extends AppCompatActivity {
 
     public void startSalesMeeting(View v) {
         Intent intent = new Intent(this, CreateMeeting.class);
-        intent.putExtra("compId", selectedCompany.id);
-        intent.putExtra("compName", selectedCompany.name);
-        intent.putExtra("contact", selectedContact);
+        ArrayList<String> list = new ArrayList<>();
+        list.add(selectedCompany.id);
+        list.add(selectedCompany.name);
+        list.add(selectedContact);
 
+        intent.putStringArrayListExtra("selected", list);
 
         startActivity(intent);
     }
