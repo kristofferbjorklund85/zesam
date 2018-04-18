@@ -14,4 +14,8 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="HighlightPressedColor" parent="AppTheme">
+        <item name="android:colorFocusedHighlight">@color/zesamBlue</item>
+    </style>
+
 </resources>
