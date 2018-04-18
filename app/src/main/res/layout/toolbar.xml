@@ -4,19 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:elevation="4dp"
-        android:theme="@style/ToolBarStyle"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar_guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </android.support.v7.widget.Toolbar>
-
     <Button
         android:id="@+id/back_button"
         android:layout_width="0dp"
@@ -25,10 +12,10 @@
         android:layout_marginEnd="32dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="Back"
-        android:elevation="6dp"
-        android:textColor="@color/zesamBlue"
         android:background="@color/zesamWhite"
+        android:elevation="5dp"
+        android:text="Back"
+        android:textColor="@color/zesamBlue"
         app:layout_constraintBottom_toTopOf="@+id/toolbar_guideline"
         app:layout_constraintEnd_toStartOf="@+id/title_view"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +39,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/my_toolbar" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="4dp"
+        android:theme="@style/ToolBarStyle"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </android.support.v7.widget.Toolbar>
 
     <android.support.constraint.Guideline
         android:id="@+id/toolbar_guideline"
