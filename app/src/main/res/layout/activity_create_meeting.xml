@@ -64,6 +64,7 @@
         android:dropDownSelector="@color/zesamBlue"
         android:dropDownWidth="100dp"
         android:textAlignment="center"
+        android:theme="@style/HighlightPressedColor"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
