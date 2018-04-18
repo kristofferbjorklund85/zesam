@@ -63,6 +63,7 @@
         android:background="@android:drawable/spinner_background"
         android:dropDownSelector="#00a2e4"
         android:dropDownWidth="100dp"
+        android:textColor="@color/zesamWhite"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
