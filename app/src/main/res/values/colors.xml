@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="zesamBlue">#00a2e4</color>
+    <color name="zesamBlack">#000000</color>
+    <color name="zesamWhite">#ffffff</color>
 </resources>
