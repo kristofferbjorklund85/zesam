@@ -12,8 +12,10 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
+        android:background="@android:color/background_dark"
         android:onClick="showResult"
         android:text="Finish"
+        android:textColor="#00a2e4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -25,8 +27,10 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
+        android:background="@android:color/background_dark"
         android:onClick="startVoiceInput"
         android:text="Record"
+        android:textColor="#00a2e4"
         app:layout_constraintBottom_toTopOf="@+id/fininsh_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
