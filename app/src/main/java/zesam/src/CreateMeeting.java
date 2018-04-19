@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.support.v7.widget.Toolbar;
 
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
@@ -55,6 +56,9 @@ public class CreateMeeting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meeting);
         Intent intent = getIntent();
+
+        Toolbar t = findViewById(R.id.toolbar_logged_in);
+        setSupportActionBar(t);
 
         companyId = intent.getStringExtra("id");
         list = intent.getStringArrayListExtra("selected");

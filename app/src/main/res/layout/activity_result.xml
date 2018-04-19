@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context="zesam.src.Result">
 
+    <include layout="@layout/toolbar_logged_in"></include>
+
     <TextView
         android:id="@+id/resultText"
         android:layout_width="332dp"

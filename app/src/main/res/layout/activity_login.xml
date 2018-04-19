@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar_logged_out"/>
 
     <EditText
         android:id="@+id/username_text"
@@ -42,6 +42,8 @@
         android:layout_marginEnd="108dp"
         android:layout_marginStart="108dp"
         android:layout_marginTop="28dp"
+        android:background="@color/zesamBlack"
+        android:textColor="@color/zesamBlue"
         android:onClick="signIn"
         android:text="Sign In"
         app:layout_constraintEnd_toEndOf="parent"

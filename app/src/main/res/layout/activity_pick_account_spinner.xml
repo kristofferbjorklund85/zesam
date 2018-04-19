@@ -11,6 +11,8 @@
     app:layout_constraintVertical_chainStyle="spread"
     tools:context="zesam.src.MainActivity">
 
+    <include layout="@layout/toolbar_logged_in"></include>
+
     <Spinner
         android:id="@+id/selectspinner"
         android:layout_width="match_parent"
@@ -49,6 +51,8 @@
         android:gravity="center"
         android:onClick="startSalesMeeting"
         android:text="Record Salesmeeting"
+        android:background="@color/zesamBlack"
+        android:textColor="@color/zesamBlue"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -61,6 +65,8 @@
         android:layout_marginBottom="120dp"
         android:gravity="center"
         android:text="View Company"
+        android:background="@color/zesamBlack"
+        android:textColor="@color/zesamBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"

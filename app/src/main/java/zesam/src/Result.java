@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 public class Result extends AppCompatActivity {
 
@@ -17,8 +17,10 @@ public class Result extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         Intent intent = getIntent();
 
-        String text = intent.getStringExtra("text");
+        Toolbar t = findViewById(R.id.toolbar_logged_in);
+        setSupportActionBar(t);
 
+        String text = intent.getStringExtra("text");
 
         resultText = (TextView) findViewById(R.id.resultText);
         resultText.setText(text);

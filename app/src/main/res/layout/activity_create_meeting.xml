@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/toolbar_logged_in"></include>
+
     <Button
         android:id="@+id/fininsh_button"
         android:layout_width="0dp"

@@ -13,7 +13,7 @@ public class Login extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Toolbar t = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_out);
         setSupportActionBar(t);
     }
 
