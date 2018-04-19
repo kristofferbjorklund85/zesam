@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.support.v7.widget.Toolbar;
 
@@ -30,6 +31,8 @@ public class PickAccountSpinner extends AppCompatActivity {
 
         Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
+        Button b = (Button) findViewById(R.id.back_button);
+        b.setVisibility(View.INVISIBLE);
 
         ctx = this;
         fd = new FakeData();
@@ -45,7 +48,7 @@ public class PickAccountSpinner extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sItems = (Spinner) findViewById(R.id.selectspinner);
+        sItems = (Spinner) findViewById(R.id.company_spinner);
         sItems.setAdapter(adapter);
 
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -70,7 +73,7 @@ public class PickAccountSpinner extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sItems = (Spinner) findViewById(R.id.selectspinner2);
+        sItems = (Spinner) findViewById(R.id.contact_spinner);
         sItems.setAdapter(adapter);
 
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

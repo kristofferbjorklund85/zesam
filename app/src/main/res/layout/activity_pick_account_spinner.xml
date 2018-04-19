@@ -3,73 +3,154 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_centerHorizontal="true"
-    android:layout_centerInParent="false"
-    android:layout_gravity="center_horizontal"
-    android:padding="20dp"
-    app:layout_constraintVertical_chainStyle="spread"
-    tools:context="zesam.src.MainActivity">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar_logged_in"></include>
+    <include
+        android:id="@+id/include2"
+        layout="@layout/toolbar_logged_in"></include>
+
+    <TextView
+        android:id="@+id/company_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:text="Choose Company:"
+        android:textColor="@color/zesamBlack"
+        android:textSize="23dp"
+        app:layout_constraintBottom_toTopOf="@+id/company_spinner"
+        app:layout_constraintStart_toStartOf="@+id/spinner_left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
 
     <Spinner
-        android:id="@+id/selectspinner"
+        android:id="@+id/company_spinner"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="20dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/selectspinner2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/button1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectspinner"
-        app:layout_constraintVertical_bias="0.228" />
+        android:background="@android:drawable/spinner_background"
+        android:dropDownSelector="@color/zesamBlue"
+        android:textAlignment="center"
+        android:theme="@style/HighlightPressedColor"
+        app:layout_constraintBottom_toTopOf="@+id/company_bottom_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/spinner_left_guideline"
+        app:layout_constraintTop_toTopOf="@+id/company_top_guideline" />
 
-    <Button
-        android:id="@+id/button1"
+    <TextView
+        android:id="@+id/contact_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="20dp"
+        android:text="Choose Contact:"
+        android:textColor="@color/zesamBlack"
+        android:textSize="23dp"
+        app:layout_constraintBottom_toTopOf="@+id/contact_spinner"
+        app:layout_constraintStart_toStartOf="@+id/spinner_left_guideline" />
+
+    <Spinner
+        android:id="@+id/contact_spinner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/spinner_background"
+        android:dropDownSelector="@color/zesamBlue"
+        android:textAlignment="center"
+        android:theme="@style/HighlightPressedColor"
+        app:layout_constraintBottom_toTopOf="@+id/contact_bottom_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/spinner_left_guideline"
+        app:layout_constraintTop_toTopOf="@+id/contact_top_guideline" />
+
+    <Button
+        android:id="@+id/start_create_meeting_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:background="@color/zesamBlack"
         android:gravity="center"
         android:onClick="startSalesMeeting"
         android:text="Record Salesmeeting"
-        android:background="@color/zesamBlack"
         android:textColor="@color/zesamBlue"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/view_company_button"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:id="@+id/view_company_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="100dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:background="@color/zesamBlack"
         android:gravity="center"
         android:text="View Company"
-        android:background="@color/zesamBlack"
         android:textColor="@color/zesamBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/spinner_left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="47dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/spinner_right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="47dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/company_top_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="178dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/company_bottom_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="278dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/contact_top_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="315dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/contact_bottom_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="415dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
 </android.support.constraint.ConstraintLayout>
