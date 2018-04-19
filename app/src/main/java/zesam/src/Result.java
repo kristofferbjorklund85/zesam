@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
@@ -19,8 +20,10 @@ public class Result extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         Intent intent = getIntent();
 
-        Toolbar t = findViewById(R.id.toolbar_logged_in);
+        Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
+        Button b = (Button) findViewById(R.id.back_button);
+        b.setVisibility(View.INVISIBLE);
 
         String text = "";
 
@@ -45,6 +48,14 @@ public class Result extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void logOut(View v) {
+        Intent intent = new Intent(getApplicationContext(), Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
-
+    public void back(View v) {
+        Intent intent = new Intent(this, CreateMeeting.class);
+        startActivity(intent);
+    }
 }

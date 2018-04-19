@@ -251,4 +251,15 @@ public class CreateMeeting extends AppCompatActivity {
         nMonth = Integer.parseInt(dtfnm.format(localDate));
         year = Integer.parseInt(dtf.format(localDate));
     }
+
+    public void logOut(View v) {
+        Intent intent = new Intent(getApplicationContext(), Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    public void back(View v) {
+        Intent intent = new Intent(this, PickAccountSpinner.class);
+        startActivity(intent);
+    }
 }

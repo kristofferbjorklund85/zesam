@@ -107,6 +107,11 @@ public class PickAccountSpinner extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void back(View v) {
+        Intent intent = new Intent(this, PickAccountSpinner.class);
+        startActivity(intent);
+    }
+
 
 
     /*public void getTest() {
