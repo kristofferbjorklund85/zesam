@@ -55,7 +55,6 @@ public class PickAccountSpinner extends AppCompatActivity {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 FakeData.Company company = (FakeData.Company) parent.getItemAtPosition(position);
-                Log.d("Object", company.id + " " + company.name);
                 selectedCompany = company;
                 initContactSpinner(fd.getContacts(company.name));
 
@@ -80,7 +79,6 @@ public class PickAccountSpinner extends AppCompatActivity {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String contactName = (String) parent.getItemAtPosition(position);
-                Log.d("ContactName: ", contactName);
                 selectedContact = contactName;
 
             } // to close the onItemSelected

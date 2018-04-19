@@ -6,21 +6,23 @@
     android:layout_height="match_parent"
     tools:context="zesam.src.Result">
 
-    <include layout="@layout/toolbar_logged_in"></include>
+    <include
+        android:id="@+id/include3"
+        layout="@layout/toolbar_logged_in"></include>
 
     <TextView
         android:id="@+id/resultText"
         android:layout_width="332dp"
-        android:layout_height="415dp"
+        android:layout_height="425dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="text here"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/include3" />
 
     <Button
         android:id="@+id/button5"

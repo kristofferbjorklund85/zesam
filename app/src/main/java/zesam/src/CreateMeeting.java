@@ -25,8 +25,7 @@ import java.util.Date;
 import java.util.List;
 
 public class CreateMeeting extends AppCompatActivity {
-    private String companyId;
-    private List list;
+    private ArrayList<String> list;
 
     Spinner daySpinner;
     Spinner monthSpinner;
@@ -40,6 +39,10 @@ public class CreateMeeting extends AppCompatActivity {
     int day;
     String sMonth;
     int nMonth;
+
+    String pickedYear;
+    String pickedMonth;
+    String pickedDay;
 
     Date date;
     DateFormat format;
@@ -60,7 +63,6 @@ public class CreateMeeting extends AppCompatActivity {
         Toolbar t = findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
 
-        companyId = intent.getStringExtra("id");
         list = intent.getStringArrayListExtra("selected");
 
         format = new SimpleDateFormat("dd/MM/yyyy");
@@ -109,6 +111,11 @@ public class CreateMeeting extends AppCompatActivity {
         Intent intent = new Intent(this, Result.class);
         intent.putExtra("text", recordedText.getText().toString());
 
+        String pickedDate = pickedYear + "-" + pickedMonth + "-" + pickedDay;
+        intent.putExtra("date", pickedDate);
+
+        intent.putStringArrayListExtra("selected", list);
+
         startActivity(intent);
     }
 
@@ -132,9 +139,34 @@ public class CreateMeeting extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("Item selected", "Triggered");
+                pickedMonth = monthSpinner.getSelectedItem().toString();
                 daySpinner.setAdapter(createDayAdapter(getDay
                         (monthAdapter.getPosition(monthSpinner.getSelectedItem().toString()) + 1)));
                 setDaySpinner();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                pickedYear = yearSpinner.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        daySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                pickedDay = daySpinner.getSelectedItem().toString();
             }
 
             @Override

@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
+import java.util.ArrayList;
+
 public class Result extends AppCompatActivity {
 
     private TextView resultText;
@@ -20,7 +22,18 @@ public class Result extends AppCompatActivity {
         Toolbar t = findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
 
-        String text = intent.getStringExtra("text");
+        String text = "";
+
+        String desc = intent.getStringExtra("text");
+        String date = intent.getStringExtra("date");
+        ArrayList<String> list = intent.getStringArrayListExtra("selected");
+
+        text = "CompanyId: " + list.get(0) + "\n";
+        text = text + "Company: " + list.get(1) + "\n";
+        text = text + "Contact: " + list.get(2) + "\n";
+
+        text = text + date + "\n\n";
+        text = text + desc;
 
         resultText = (TextView) findViewById(R.id.resultText);
         resultText.setText(text);
