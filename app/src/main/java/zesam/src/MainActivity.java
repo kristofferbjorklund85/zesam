@@ -44,11 +44,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 inputStream.close();
-                Log.d("Output", list.get(0));
-                Log.d("Output", list.get(1));
                 intent.putExtra("User", list.get(0));
                 intent.putExtra("Pass", list.get(1));
-
             }
 
         } catch (FileNotFoundException e) {
@@ -56,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
         } catch (IndexOutOfBoundsException e) {
-            Log.e("login activity", "Index Out of Bounds: " + e.toString());
+            //Log.e("login activity", "Index Out of Bounds: " + e.toString());
         }
 
     }
