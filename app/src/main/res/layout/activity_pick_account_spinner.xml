@@ -99,6 +99,7 @@
         android:gravity="center"
         android:text="View Company"
         android:textColor="@color/zesamBlue"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
