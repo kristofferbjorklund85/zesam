@@ -8,6 +8,7 @@ public class FakeData {
     public List getCompanies() {
 
         ArrayList<Company> compList = new ArrayList<>();
+        compList.add(new Company("0", ""));
         compList.add(new Company("1", "Volvo"));
         compList.add(new Company("2", "Ericsson"));
         compList.add(new Company("3", "NCC"));

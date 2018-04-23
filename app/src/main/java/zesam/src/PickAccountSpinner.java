@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +19,14 @@ import java.util.List;
 public class PickAccountSpinner extends AppCompatActivity {
 
     Spinner sItems;
+    Spinner sContacts;
+    TextView tContact;
+
+    ArrayAdapter<FakeData.Company> companyAdapter;
+
     FakeData.Company selectedCompany;
     FakeData fd;
+
     String selectedContact;
 
     private Context ctx;
@@ -33,30 +40,38 @@ public class PickAccountSpinner extends AppCompatActivity {
         setSupportActionBar(t);
         Button b = (Button) findViewById(R.id.back_button);
         b.setVisibility(View.INVISIBLE);
+        sContacts = (Spinner) findViewById(R.id.contact_spinner);
+        sContacts.setVisibility(View.INVISIBLE);
+        tContact = (TextView) findViewById(R.id.contact_text);
+        tContact.setVisibility(View.INVISIBLE);
 
         ctx = this;
         fd = new FakeData();
         initCompanySpinner(fd.getCompanies());
     }
 
-
-
-    public void initCompanySpinner(List spinnerArray) {
-
-
-        ArrayAdapter<FakeData.Company> adapter = new ArrayAdapter<>(
+    public void initCompanySpinner(final List spinnerArray) {
+        companyAdapter = new ArrayAdapter<FakeData.Company>(
                 this, android.R.layout.simple_spinner_item, spinnerArray);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        companyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sItems = (Spinner) findViewById(R.id.company_spinner);
-        sItems.setAdapter(adapter);
+        sItems.setAdapter(companyAdapter);
+
+        sItems.setSelection(0);
 
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 FakeData.Company company = (FakeData.Company) parent.getItemAtPosition(position);
                 selectedCompany = company;
-                initContactSpinner(fd.getContacts(company.name));
+                if(!selectedCompany.name.equals("")) {
+                    spinnerArray.remove(0);
+                    initContactSpinner(fd.getContacts(company.name));
+                    companyAdapter.notifyDataSetChanged();
+                    sContacts.setVisibility(View.VISIBLE);
+                    tContact.setVisibility(View.VISIBLE);
+                }
 
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent) {
@@ -66,8 +81,6 @@ public class PickAccountSpinner extends AppCompatActivity {
     }
 
     public void initContactSpinner(List spinnerArray) {
-
-
         ArrayAdapter<FakeData.Company> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, spinnerArray);
 
@@ -87,7 +100,6 @@ public class PickAccountSpinner extends AppCompatActivity {
             }
         });
     }
-
 
     public void startSalesMeeting(View v) {
         Intent intent = new Intent(this, CreateMeeting.class);
@@ -111,8 +123,6 @@ public class PickAccountSpinner extends AppCompatActivity {
         Intent intent = new Intent(this, PickAccountSpinner.class);
         startActivity(intent);
     }
-
-
 
     /*public void getTest() {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
