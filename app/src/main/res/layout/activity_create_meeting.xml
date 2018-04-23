@@ -12,22 +12,23 @@
     <Button
         android:id="@+id/fininsh_button"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:background="@android:color/background_dark"
         android:onClick="showResult"
-        android:text="Finish"
+        android:text="Review"
         android:textColor="#00a2e4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/review_guideline" />
 
     <Button
         android:id="@+id/record_button"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
@@ -37,7 +38,8 @@
         android:textColor="#00a2e4"
         app:layout_constraintBottom_toTopOf="@+id/fininsh_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/record_guideline" />
 
     <EditText
         android:id="@+id/recorded_text"
@@ -134,5 +136,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="65dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/record_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="399dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/review_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="455dp" />
 
 </android.support.constraint.ConstraintLayout>

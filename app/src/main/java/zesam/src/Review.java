@@ -4,26 +4,23 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 
-public class Result extends AppCompatActivity {
+public class Review extends AppCompatActivity {
 
     private TextView resultText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_review);
         Intent intent = getIntent();
 
         Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
-        Button b = (Button) findViewById(R.id.back_button);
-        b.setVisibility(View.INVISIBLE);
 
         String text = "";
 

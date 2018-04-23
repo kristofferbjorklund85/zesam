@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="zesam.src.Result">
+    tools:context="zesam.src.Review">
 
     <include
         android:id="@+id/include3"
@@ -12,28 +12,38 @@
 
     <TextView
         android:id="@+id/resultText"
-        android:layout_width="332dp"
-        android:layout_height="425dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintBottom_toTopOf="@+id/finish_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include3" />
 
     <Button
-        android:id="@+id/button5"
-        android:layout_width="346dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/finish_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:background="@android:color/background_dark"
         android:onClick="backToPickAccount"
-        android:text="Back"
+        android:text="Finish"
+        android:textColor="#00a2e4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/finish_guideline" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/finish_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="455dp" />
 </android.support.constraint.ConstraintLayout>

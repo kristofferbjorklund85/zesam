@@ -108,7 +108,7 @@ public class CreateMeeting extends AppCompatActivity {
     }
 
     public void showResult(View v) {
-        Intent intent = new Intent(this, Result.class);
+        Intent intent = new Intent(this, Review.class);
         intent.putExtra("text", recordedText.getText().toString());
 
         String pickedDate = pickedYear + "-" + pickedMonth + "-" + pickedDay;
