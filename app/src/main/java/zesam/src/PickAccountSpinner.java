@@ -21,6 +21,7 @@ public class PickAccountSpinner extends AppCompatActivity {
     Spinner sItems;
     Spinner sContacts;
     TextView tContact;
+    Button createButton;
 
     ArrayAdapter<FakeData.Company> companyAdapter;
 
@@ -44,6 +45,8 @@ public class PickAccountSpinner extends AppCompatActivity {
         sContacts.setVisibility(View.INVISIBLE);
         tContact = (TextView) findViewById(R.id.contact_text);
         tContact.setVisibility(View.INVISIBLE);
+        createButton = (Button) findViewById(R.id.start_create_meeting_button);
+        createButton.setVisibility(View.INVISIBLE);
 
         ctx = this;
         fd = new FakeData();
@@ -65,8 +68,12 @@ public class PickAccountSpinner extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 FakeData.Company company = (FakeData.Company) parent.getItemAtPosition(position);
                 selectedCompany = company;
+
                 if(!selectedCompany.name.equals("")) {
-                    spinnerArray.remove(0);
+                    if(companyAdapter.getItem(0).name.equals("")) {
+                        spinnerArray.remove(0);
+                    }
+
                     initContactSpinner(fd.getContacts(company.name));
                     companyAdapter.notifyDataSetChanged();
                     sContacts.setVisibility(View.VISIBLE);
@@ -80,9 +87,9 @@ public class PickAccountSpinner extends AppCompatActivity {
         });
     }
 
-    public void initContactSpinner(List spinnerArray) {
-        ArrayAdapter<FakeData.Company> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, spinnerArray);
+    public void initContactSpinner(final List contactArray) {
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, contactArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sItems = (Spinner) findViewById(R.id.contact_spinner);
@@ -93,6 +100,15 @@ public class PickAccountSpinner extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String contactName = (String) parent.getItemAtPosition(position);
                 selectedContact = contactName;
+
+                if(!selectedContact.equals("")) {
+                    if(adapter.getItem(0).equals("")) {
+                        contactArray.remove(0);
+                    }
+
+                    adapter.notifyDataSetChanged();
+                    createButton.setVisibility(View.VISIBLE);
+                }
 
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent) {

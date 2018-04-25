@@ -23,6 +23,7 @@ public class FakeData {
 
     public List getContacts(String company) {
         ArrayList<String> list = new ArrayList<String>();
+        list.add("");
         list.add("Pelle Jansson (" + company + ")");
         list.add("Kalle Jonsson (" + company + ")");
         list.add("Leif Olsson (" + company + ")");
