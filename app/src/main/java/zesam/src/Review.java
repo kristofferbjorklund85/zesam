@@ -1,8 +1,12 @@
 package zesam.src;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,12 +73,16 @@ public class Review extends AppCompatActivity {
 
 
     public void createReminder() {
+        if(!checkPermissions()) {
+            return;
+        }
+
         Date currentTime = Calendar.getInstance().getTime();
 
         String title = "Test";
         String desc = "Testar testar testar";
         String place = "";
-        long startDate = Calendar.getInstance().getTimeInMillis() + 60000;
+        long startDate = Calendar.getInstance().getTimeInMillis() + 360000;
         int status = 1;
         long eventID;
 
@@ -135,6 +143,27 @@ public class Review extends AppCompatActivity {
 
         } catch (Exception ex) {
             Log.d("Reminder: ","Error in adding event on calendar" + ex.getMessage());
+        }
+
+
+
+    }
+
+    private boolean checkPermissions() {
+        int MY_PERMISSIONS_REQUEST_CALENDAR = 1;
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_CALENDAR)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR},
+                    MY_PERMISSIONS_REQUEST_CALENDAR);
+
+            return true;
+        } else {
+            // Permission has already been granted
+            return true;
         }
 
 

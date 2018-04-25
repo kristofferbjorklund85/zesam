@@ -70,12 +70,14 @@ public class PickAccountSpinner extends AppCompatActivity {
                     if(companyAdapter.getItem(0).name.equals("")) {
                         spinnerArray.remove(0);
                         companyAdapter.notifyDataSetChanged();
+                        sItems.setSelection(position-1);
 
-                        FakeData.Company company = (FakeData.Company) parent.getItemAtPosition(position);
+                        FakeData.Company company = (FakeData.Company) parent.getItemAtPosition(position-1);
                         selectedCompany = company;
                         initContactSpinner(fd.getContacts(company.name));
                         sContacts.setVisibility(View.VISIBLE);
                         tContact.setVisibility(View.VISIBLE);
+
                     } else {
                         FakeData.Company company = (FakeData.Company) parent.getItemAtPosition(position);
                         selectedCompany = company;
@@ -101,16 +103,20 @@ public class PickAccountSpinner extends AppCompatActivity {
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String contactName = (String) parent.getItemAtPosition(position);
-                selectedContact = contactName;
-
-                if(!selectedContact.equals("")) {
+                if(!adapter.getItem(position).equals("")) {
                     if(adapter.getItem(0).equals("")) {
                         contactArray.remove(0);
+                        adapter.notifyDataSetChanged();
+                        sItems.setSelection(position-1);
+
+                        String contactName = (String) parent.getItemAtPosition(position);
+                        selectedContact = contactName;
+                        createButton.setVisibility(View.VISIBLE);
+                    } else {
+                        String contactName = (String) parent.getItemAtPosition(position);
+                        selectedContact = contactName;
                     }
 
-                    adapter.notifyDataSetChanged();
-                    createButton.setVisibility(View.VISIBLE);
                 }
 
             } // to close the onItemSelected
