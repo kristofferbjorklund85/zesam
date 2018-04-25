@@ -114,7 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="130dp" />
+        app:layout_constraintGuide_begin="142dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
@@ -135,20 +135,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="65dp" />
+        app:layout_constraintGuide_begin="77dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/record_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="399dp" />
+        app:layout_constraintGuide_begin="443dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/review_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="455dp" />
+        app:layout_constraintGuide_begin="508dp" />
 
 </android.support.constraint.ConstraintLayout>
