@@ -66,18 +66,21 @@ public class PickAccountSpinner extends AppCompatActivity {
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                FakeData.Company company = (FakeData.Company) parent.getItemAtPosition(position);
-                selectedCompany = company;
-
-                if(!selectedCompany.name.equals("")) {
+                if(!companyAdapter.getItem(position).name.equals("")) {
                     if(companyAdapter.getItem(0).name.equals("")) {
                         spinnerArray.remove(0);
-                    }
+                        companyAdapter.notifyDataSetChanged();
 
-                    initContactSpinner(fd.getContacts(company.name));
-                    companyAdapter.notifyDataSetChanged();
-                    sContacts.setVisibility(View.VISIBLE);
-                    tContact.setVisibility(View.VISIBLE);
+                        FakeData.Company company = (FakeData.Company) parent.getItemAtPosition(position);
+                        selectedCompany = company;
+                        initContactSpinner(fd.getContacts(company.name));
+                        sContacts.setVisibility(View.VISIBLE);
+                        tContact.setVisibility(View.VISIBLE);
+                    } else {
+                        FakeData.Company company = (FakeData.Company) parent.getItemAtPosition(position);
+                        selectedCompany = company;
+                        initContactSpinner(fd.getContacts(company.name));
+                    }
                 }
 
             } // to close the onItemSelected
