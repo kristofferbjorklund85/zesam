@@ -1,5 +1,6 @@
 package zesam.src;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,6 +49,8 @@ public class CreateMeeting extends AppCompatActivity {
     DateFormat format;
     LocalDate localDate;
 
+    public static Activity act;
+
     private EditText recordedText;
     private ArrayList<String> inputArray = new ArrayList<>();
     private String textblock = "";
@@ -59,6 +62,7 @@ public class CreateMeeting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meeting);
         Intent intent = getIntent();
+        act = this;
 
         Toolbar t = findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
@@ -97,7 +101,9 @@ public class CreateMeeting extends AppCompatActivity {
                 }
                 break;
             }
-
+            case 0: {
+                finish();
+            }
         }
     }
 

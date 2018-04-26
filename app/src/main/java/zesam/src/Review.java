@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
@@ -23,6 +24,8 @@ import java.util.TimeZone;
 public class Review extends AppCompatActivity {
 
     private TextView resultText;
+    ArrayList<String> list;
+    CheckBox cb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +36,13 @@ public class Review extends AppCompatActivity {
         Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
 
+        cb = (CheckBox) findViewById(R.id.reminder);
+
         String text = "";
 
         String desc = intent.getStringExtra("text");
         String date = intent.getStringExtra("date");
-        ArrayList<String> list = intent.getStringArrayListExtra("selected");
+        list = intent.getStringArrayListExtra("selected");
 
         text = "CompanyId: " + list.get(0) + "\n";
         text = text + "Company: " + list.get(1) + "\n";
@@ -52,9 +57,17 @@ public class Review extends AppCompatActivity {
     }
 
     public void backToPickAccount(View v) {
-        Intent intent = new Intent(this, PickAccountSpinner.class);
+        PickAccountSpinner.act.finish();
+        CreateMeeting.act.finish();
 
-        startActivity(intent);
+        if(cb.isChecked()) {
+            createReminder();
+        }
+
+        /*Intent intent = new Intent(this, PickAccountSpinner.class);
+        startActivity(intent);*/
+
+        finish();
     }
 
     public void logOut(View v) {
@@ -69,24 +82,26 @@ public class Review extends AppCompatActivity {
     }
 
     public void setReminder(View v) {
-        createReminder();
+
 
     }
 
     public void createReminder() {
+        String title = "Påminnelse säljmöte " + list.get(1);
+        String desc = "Påminnelse om uppföljning av möte med " + list.get(2);
+        String place = "";
 
-        Calendar beginTime = Calendar.getInstance();
-        beginTime.set(2012, 0, 19, 7, 30);
-        Calendar endTime = Calendar.getInstance();
-        endTime.set(2012, 0, 19, 8, 30);
+        long startDate = Calendar.getInstance().getTimeInMillis() + 3600000;
+        long endDate = startDate + 1000 * 10 * 10;
+
         Intent intent = new Intent(Intent.ACTION_INSERT)
                 .setData(CalendarContract.Events.CONTENT_URI)
-                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
-                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
-                .putExtra(CalendarContract.Events.TITLE, "Test")
-                .putExtra(CalendarContract.Events.DESCRIPTION, "testestestsetsetset")
-                .putExtra(CalendarContract.Events.EVENT_LOCATION, "Diadrom")
-                .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY)
+                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startDate)
+                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endDate)
+                .putExtra(CalendarContract.Events.TITLE, title)
+                .putExtra(CalendarContract.Events.DESCRIPTION, desc)
+                .putExtra(CalendarContract.Events.EVENT_LOCATION, place)
+                .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
         startActivity(intent);
 
     }
@@ -188,9 +203,9 @@ public class Review extends AppCompatActivity {
             // Permission has already been granted
             return true;
         }
-
-
-
     }
+
+
+
 }
 

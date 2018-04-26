@@ -1,5 +1,6 @@
 package zesam.src;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -32,10 +33,14 @@ public class PickAccountSpinner extends AppCompatActivity {
 
     private Context ctx;
 
+    public static Activity act;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_account_spinner);
+
+        act = this;
 
         Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
