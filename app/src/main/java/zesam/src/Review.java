@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.provider.CalendarContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -73,6 +74,26 @@ public class Review extends AppCompatActivity {
     }
 
     public void createReminder() {
+
+        Calendar beginTime = Calendar.getInstance();
+        beginTime.set(2012, 0, 19, 7, 30);
+        Calendar endTime = Calendar.getInstance();
+        endTime.set(2012, 0, 19, 8, 30);
+        Intent intent = new Intent(Intent.ACTION_INSERT)
+                .setData(CalendarContract.Events.CONTENT_URI)
+                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
+                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
+                .putExtra(CalendarContract.Events.TITLE, "Test")
+                .putExtra(CalendarContract.Events.DESCRIPTION, "testestestsetsetset")
+                .putExtra(CalendarContract.Events.EVENT_LOCATION, "Diadrom")
+                .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY)
+        startActivity(intent);
+
+    }
+
+
+    /*
+    public void createReminder() {
         while(!checkPermissions()) {
 
         }
@@ -109,11 +130,11 @@ public class Review extends AppCompatActivity {
             // confirmed (1) or canceled
             // (2):
             eventValues.put("eventTimezone", TimeZone.getDefault().getID());
-            /*
+            *//*
              * Comment below visibility and transparency column to avoid
              * java.lang.IllegalArgumentException column visibility is invalid
              * error
-             */
+             *//*
 
             // eventValues.put("visible", 1); // visibility to default (0),
             // confidential (1), private
@@ -148,6 +169,8 @@ public class Review extends AppCompatActivity {
 
 
     }
+
+    */
 
     private boolean checkPermissions() {
         int MY_PERMISSIONS_REQUEST_CALENDAR = 1;
