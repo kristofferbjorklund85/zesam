@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class Review extends AppCompatActivity {
 
@@ -71,26 +72,24 @@ public class Review extends AppCompatActivity {
 
     }
 
-
     public void createReminder() {
-        if(!checkPermissions()) {
-            return;
+        while(!checkPermissions()) {
+
         }
 
         Date currentTime = Calendar.getInstance().getTime();
 
         String title = "Test";
         String desc = "Testar testar testar";
-        String place = "";
-        long startDate = Calendar.getInstance().getTimeInMillis() + 360000;
-        int status = 1;
+        String place = "Diadrom";
+        long startDate = Calendar.getInstance().getTimeInMillis() + 3600000;
         long eventID;
 
 
         try {
             String eventUriString = "content://com.android.calendar/events";
             ContentValues eventValues = new ContentValues();
-            eventValues.put("calendar_id", 1); // id, We need to choose from
+            eventValues.put("calendar_id", 3); // id, We need to choose from
             // our mobile for primary its 1
             eventValues.put("title", title);
             eventValues.put("description", desc);
@@ -99,23 +98,24 @@ public class Review extends AppCompatActivity {
             long endDate = startDate + 1000 * 10 * 10; // For next 10min
             eventValues.put("dtstart", startDate);
             eventValues.put("dtend", endDate);
+            //eventValues.put("duration", "PT1H");
 
-            // values.put("allDay", 1); //If it is bithday alarm or such
+            eventValues.put("allDay", 0); //If it is bithday alarm or such
             // kind (which should remind me for whole day) 0 for false, 1
             // for true
-            eventValues.put("eventStatus", status); // This information is
+            eventValues.put("eventStatus", 1); // This information is
             // sufficient for most
             // entries tentative (0),
             // confirmed (1) or canceled
             // (2):
-            eventValues.put("eventTimezone", "UTC/GMT +5:30");
+            eventValues.put("eventTimezone", TimeZone.getDefault().getID());
             /*
              * Comment below visibility and transparency column to avoid
              * java.lang.IllegalArgumentException column visibility is invalid
              * error
              */
-            // eventValues.put("allDay", 1);
-            // eventValues.put("visibility", 0); // visibility to default (0),
+
+            // eventValues.put("visible", 1); // visibility to default (0),
             // confidential (1), private
             // (2), or public (3):
             // eventValues.put("transparency", 0); // You can control whether
