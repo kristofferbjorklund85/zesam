@@ -3,6 +3,7 @@ package zesam.src;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class CreateMeeting extends AppCompatActivity {
+
     private ArrayList<String> list;
 
     Spinner daySpinner;
@@ -54,9 +56,10 @@ public class CreateMeeting extends AppCompatActivity {
     DateFormat format;
     LocalDate localDate;
 
+    Context c;
     Calendar myCalendar;
     EditText date_text;
-
+    DatePickerDialog.OnDateSetListener dateListener;
 
     public static Activity act;
 
@@ -85,11 +88,12 @@ public class CreateMeeting extends AppCompatActivity {
         setDates();
         initDateSpinner(getDay(nMonth), getMonth(), getYear());
 
-        myCalendar = Calendar.getInstance();
+        c = this;
 
+        myCalendar = Calendar.getInstance();
         date_text = (EditText) findViewById(R.id.date_text);
 
-        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+        dateListener = new DatePickerDialog.OnDateSetListener() {
 
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -108,7 +112,7 @@ public class CreateMeeting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(this, date, myCalendar
+                new DatePickerDialog(c, dateListener, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
