@@ -31,8 +31,6 @@ public class PickAccountSpinner extends AppCompatActivity {
 
     String selectedContact;
 
-    private Context ctx;
-
     public static Activity act;
 
     @Override
@@ -55,7 +53,6 @@ public class PickAccountSpinner extends AppCompatActivity {
 
         Permissions.checkLocationPermission(this);
 
-        ctx = this;
         fd = new FakeData();
         initCompanySpinner(fd.getCompanies());
     }
