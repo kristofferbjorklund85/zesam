@@ -45,7 +45,7 @@
     <EditText
         android:id="@+id/recorded_text"
         android:layout_width="0dp"
-        android:layout_height="204dp"
+        android:layout_height="287dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
@@ -54,68 +54,20 @@
         android:gravity="top"
         android:hint="Recorded text will appear here"
         android:inputType="textMultiLine"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toTopOf="@+id/record_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
-
-    <Spinner
-        android:id="@+id/year_spinner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="4dp"
-        android:background="@android:drawable/spinner_background"
-        android:dropDownSelector="@color/zesamBlue"
-        android:dropDownWidth="100dp"
-        android:textAlignment="center"
-        android:theme="@style/HighlightPressedColor"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
-
-    <Spinner
-        android:id="@+id/month_spinner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:background="@android:drawable/spinner_background"
-        android:dropDownSelector="@color/zesamBlue"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
-
-    <Spinner
-        android:id="@+id/day_spinner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:background="@android:drawable/spinner_background"
-        android:dropDownSelector="@color/zesamBlue"
-        android:dropDownWidth="80dp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintVertical_bias="0.642" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="142dp" />
+        app:layout_constraintGuide_begin="127dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
@@ -136,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="77dp" />
+        app:layout_constraintGuide_begin="65dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/record_guideline"
@@ -152,25 +104,22 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="508dp" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="199dp" />
-
     <EditText
         android:id="@+id/date_text"
-        android:layout_width="218dp"
-        android:layout_height="wrap_content"
+        android:layout_width="163dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="date"
+        android:background="@android:color/transparent"
+        android:ems="16"
         android:focusable="false"
+        android:gravity="center_horizontal"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
 </android.support.constraint.ConstraintLayout>
