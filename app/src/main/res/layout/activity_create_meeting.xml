@@ -8,7 +8,12 @@
     <include
         android:id="@+id/include"
         layout="@layout/toolbar_logged_in"
-        android:layout_width="388dp"></include>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/date_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></include>
 
     <Button
         android:id="@+id/fininsh_button"
@@ -45,16 +50,16 @@
     <EditText
         android:id="@+id/recorded_text"
         android:layout_width="0dp"
-        android:layout_height="287dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
         android:ems="10"
         android:gravity="top"
         android:hint="Recorded text will appear here"
         android:inputType="textMultiLine"
-        android:background="@android:color/transparent"
         app:layout_constraintBottom_toTopOf="@+id/record_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -106,11 +111,11 @@
 
     <EditText
         android:id="@+id/date_text"
-        android:layout_width="163dp"
-        android:layout_height="46dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="264dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/etbg"
         android:ems="16"
