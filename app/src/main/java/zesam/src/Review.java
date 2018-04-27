@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -63,10 +64,9 @@ public class Review extends AppCompatActivity {
 
         getUserLocation();
 
-        text = text + mapsURL + userLocation.getLatitude() + "," + userLocation.getLongitude();
-
         resultText = (TextView) findViewById(R.id.resultText);
-        resultText.setText(text);
+        resultText.setClickable(true);
+        resultText.setText(text + mapsURL + userLocation.getLatitude() + "," + userLocation.getLongitude());
 
     }
 
