@@ -18,4 +18,8 @@
         <item name="android:colorFocusedHighlight">@color/zesamBlue</item>
     </style>
 
+    <style name="textBorder" parent="Widget.AppCompat.EditText">
+        <item name="android:strokeColor">@color/zesamBlack</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>
