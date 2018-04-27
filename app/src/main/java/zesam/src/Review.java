@@ -28,7 +28,9 @@ import java.util.TimeZone;
 
 public class Review extends AppCompatActivity {
 
-    private TextView resultText;
+    private TextView resultText1;
+    private TextView resultText2;
+    private TextView resultDate;
     ArrayList<String> list;
     CheckBox cb;
     LocationManager locationManager;
@@ -49,24 +51,33 @@ public class Review extends AppCompatActivity {
 
         cb = (CheckBox) findViewById(R.id.reminder);
 
-        String text = "";
-
         String desc = intent.getStringExtra("text");
         String date = intent.getStringExtra("date");
         list = intent.getStringArrayListExtra("selected");
 
-        text = "CompanyId: " + list.get(0) + "\n";
-        text = text + "Company: " + list.get(1) + "\n";
-        text = text + "Contact: " + list.get(2) + "\n";
+        resultText1 = (TextView) findViewById(R.id.resultText1);
+        resultText2 = (TextView) findViewById(R.id.resultText2);
+        resultDate = (TextView) findViewById(R.id.resultDate);
 
-        text = text + date + "\n\n";
+
+        String headText = "";
+
+        headText = headText + "Company: " + list.get(1) + "\n";
+        headText = headText + "Contact: " + list.get(2) + "\n";
+
+
+        resultText1.setText(headText);
+        resultDate.setText(date);
+
+        String text = "";
+
         text = text + desc + "\n\n";
 
         getUserLocation();
 
-        resultText = (TextView) findViewById(R.id.resultText);
-        resultText.setClickable(true);
-        resultText.setText(text + mapsURL + userLocation.getLatitude() + "," + userLocation.getLongitude());
+
+        resultText2.setClickable(true);
+        resultText2.setText(text + mapsURL + userLocation.getLatitude() + "," + userLocation.getLongitude());
 
     }
 
@@ -90,8 +101,6 @@ public class Review extends AppCompatActivity {
     public void back(View v) {
         onBackPressed();
     }
-
-    public void setReminder(View v) { }
 
     public void createReminder() {
         String title = "Påminnelse säljmöte " + list.get(1);
