@@ -2,8 +2,12 @@ package zesam.src;
 
 import android.Manifest;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.provider.CalendarContract;
 import android.support.v4.app.ActivityCompat;
@@ -26,12 +30,20 @@ public class Review extends AppCompatActivity {
     private TextView resultText;
     ArrayList<String> list;
     CheckBox cb;
+    LocationManager locationManager;
+    Location userLocation;
+    String mapsURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
         Intent intent = getIntent();
+        mapsURL = getResources().getString(R.string.gMaps_url);
+
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        getUserLocation();
 
         Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
@@ -49,7 +61,8 @@ public class Review extends AppCompatActivity {
         text = text + "Contact: " + list.get(2) + "\n";
 
         text = text + date + "\n\n";
-        text = text + desc;
+        text = text + desc + "\n\n";
+        text = text + mapsURL + userLocation.getLatitude() + "," + userLocation.getLongitude();
 
         resultText = (TextView) findViewById(R.id.resultText);
         resultText.setText(text);
@@ -60,7 +73,7 @@ public class Review extends AppCompatActivity {
         PickAccountSpinner.act.finish();
         CreateMeeting.act.finish();
 
-        if(cb.isChecked()) {
+        if (cb.isChecked()) {
             createReminder();
         }
 
@@ -78,10 +91,7 @@ public class Review extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void setReminder(View v) {
-
-
-    }
+    public void setReminder(View v) { }
 
     public void createReminder() {
         String title = "Påminnelse säljmöte " + list.get(1);
@@ -103,5 +113,29 @@ public class Review extends AppCompatActivity {
 
     }
 
+    public void getUserLocation() {
+        LocationListener locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                userLocation = location;
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+            }
+
+            public void onProviderEnabled(String provider) {
+            }
+
+            public void onProviderDisabled(String provider) {
+            }
+        };
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+    }
 }
 
