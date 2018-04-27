@@ -60,6 +60,9 @@ public class CreateMeeting extends AppCompatActivity {
 
 
         recordedText = (EditText) findViewById(R.id.recorded_text);
+        if(!MeetingSingleton.getDescription().equals("")) {
+            recordedText.setText(MeetingSingleton.getDescription());
+        }
         textblock = "";
 
         String myFormat = "yyyy MMM dd"; //In which you need put here
@@ -67,7 +70,13 @@ public class CreateMeeting extends AppCompatActivity {
 
         myCalendar = Calendar.getInstance();
         date_text = (EditText) findViewById(R.id.date_text);
-        updateLabel();
+
+        if(!MeetingSingleton.getDate().equals("")) {
+            date_text.setText(MeetingSingleton.getDate());
+            MeetingSingleton.setDate(sdf.format(myCalendar.getTime()));
+        } else {
+            updateLabel();
+        }
 
         initDatePicker();
 
@@ -129,17 +138,17 @@ public class CreateMeeting extends AppCompatActivity {
 
     public void setVoiceInputText(String text) {
         textblock = textblock + text + "\n\n";
+        MeetingSingleton.setDescription(textblock);
         recordedText.setText(textblock);
     }
 
     private void updateLabel() {
         date_text.setText(sdf.format(myCalendar.getTime()));
+        MeetingSingleton.setDate(sdf.format(myCalendar.getTime()));
     }
 
     public void showResult(View v) {
         Intent intent = new Intent(this, Review.class);
-        MeetingSingleton.setDescription(recordedText.getText().toString());
-        MeetingSingleton.setDate(sdf.format(myCalendar.getTime()));
 
         startActivity(intent);
     }

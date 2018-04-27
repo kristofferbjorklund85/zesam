@@ -139,7 +139,7 @@ public class PickAccountSpinner extends AppCompatActivity {
     public void startSalesMeeting(View v) {
         Intent intent = new Intent(this, CreateMeeting.class);
         MeetingSingleton.setCompanyName(selectedCompany.name);
-        MeetingSingleton.setCompanyName(selectedCompany.id);
+        MeetingSingleton.setCompanyId(selectedCompany.id);
         MeetingSingleton.setContact(selectedContact);
 
         startActivity(intent);

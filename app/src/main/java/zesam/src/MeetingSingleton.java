@@ -1,12 +1,12 @@
 package zesam.src;
 
 public class MeetingSingleton {
-    String comapnyName;
-    String companyId;
-    String contact;
-    String description;
-    String date;
-    String mapsURL;
+    String comapnyName = "";
+    String companyId = "";
+    String contact = "";
+    String description = "";
+    String date = "";
+    String mapsURL = "";
 
     private static MeetingSingleton ms = new MeetingSingleton();
 
@@ -36,6 +36,14 @@ public class MeetingSingleton {
 
     public static String getCompanyName() {
         return ms.comapnyName;
+    }
+
+    public static String getDescription() {
+        return ms.description;
+    }
+
+    public static String getDate() {
+        return ms.date;
     }
 
     public static MeetingSingleton getMeeting() {

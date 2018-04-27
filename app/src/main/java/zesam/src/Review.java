@@ -44,6 +44,8 @@ public class Review extends AppCompatActivity {
         Intent intent = getIntent();
         mapsURL = getResources().getString(R.string.gMaps_url);
 
+        MeetingSingleton ms = MeetingSingleton.getMeeting();
+
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_in);
@@ -51,33 +53,27 @@ public class Review extends AppCompatActivity {
 
         cb = (CheckBox) findViewById(R.id.reminder);
 
-        String desc = intent.getStringExtra("text");
-        String date = intent.getStringExtra("date");
-        list = intent.getStringArrayListExtra("selected");
-
         resultText1 = (TextView) findViewById(R.id.resultText1);
         resultText2 = (TextView) findViewById(R.id.resultText2);
         resultDate = (TextView) findViewById(R.id.resultDate);
 
-
         String headText = "";
 
-        headText = headText + "Company: " + list.get(1) + "\n";
-        headText = headText + "Contact: " + list.get(2) + "\n";
-
+        headText = headText + "Company: " + ms.comapnyName + "\n";
+        headText = headText + "Contact: " + ms.contact + "\n";
 
         resultText1.setText(headText);
-        resultDate.setText(date);
+        resultDate.setText(ms.date);
 
         String text = "";
 
-        text = text + desc + "\n\n";
+        text = text + ms.description + "\n\n";
 
         getUserLocation();
 
-
         resultText2.setClickable(true);
-        resultText2.setText(text + mapsURL + userLocation.getLatitude() + "," + userLocation.getLongitude());
+        MeetingSingleton.setMapsURL(mapsURL + userLocation.getLatitude() + "," + userLocation.getLongitude());
+        resultText2.setText(text + ms.mapsURL);
 
     }
 
