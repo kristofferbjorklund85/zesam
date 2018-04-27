@@ -7,7 +7,8 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/toolbar_logged_in"></include>
+        layout="@layout/toolbar_logged_in"
+        android:layout_width="388dp"></include>
 
     <Button
         android:id="@+id/fininsh_button"
@@ -44,7 +45,7 @@
     <EditText
         android:id="@+id/recorded_text"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="204dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
@@ -56,7 +57,7 @@
         app:layout_constraintBottom_toTopOf="@+id/record_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/month_spinner" />
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <Spinner
         android:id="@+id/year_spinner"
@@ -150,5 +151,26 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="508dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="199dp" />
+
+    <EditText
+        android:id="@+id/date_text"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="date"
+        android:focusable="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
 </android.support.constraint.ConstraintLayout>
