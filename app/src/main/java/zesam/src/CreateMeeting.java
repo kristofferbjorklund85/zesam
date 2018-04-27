@@ -35,10 +35,6 @@ public class CreateMeeting extends AppCompatActivity {
 
     private ArrayList<String> list;
 
-    String pickedYear;
-    String pickedMonth;
-    String pickedDay;
-
     SimpleDateFormat sdf;
     Calendar myCalendar;
     EditText date_text;
@@ -61,7 +57,6 @@ public class CreateMeeting extends AppCompatActivity {
         setSupportActionBar(t);
 
         Intent intent = getIntent();
-        list = intent.getStringArrayListExtra("selected");
 
 
         recordedText = (EditText) findViewById(R.id.recorded_text);
@@ -143,11 +138,8 @@ public class CreateMeeting extends AppCompatActivity {
 
     public void showResult(View v) {
         Intent intent = new Intent(this, Review.class);
-        intent.putExtra("text", recordedText.getText().toString());
-
-        String pickedDate = sdf.format(myCalendar.getTime());
-        intent.putExtra("date", pickedDate);
-        intent.putStringArrayListExtra("selected", list);
+        MeetingSingleton.setDescription(recordedText.getText().toString());
+        MeetingSingleton.setDate(sdf.format(myCalendar.getTime()));
 
         startActivity(intent);
     }

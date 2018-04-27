@@ -73,6 +73,9 @@ public class PickAccountSpinner extends AppCompatActivity {
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(!MeetingSingleton.getCompanyName().equals(sItems.getSelectedItem().toString())) {
+                    MeetingSingleton.clearMeeting();
+                }
                 if(!companyAdapter.getItem(position).name.equals("")) {
                     if(companyAdapter.getItem(0).name.equals("")) {
                         spinnerArray.remove(0);
@@ -135,12 +138,9 @@ public class PickAccountSpinner extends AppCompatActivity {
 
     public void startSalesMeeting(View v) {
         Intent intent = new Intent(this, CreateMeeting.class);
-        ArrayList<String> list = new ArrayList<>();
-        list.add(selectedCompany.id);
-        list.add(selectedCompany.name);
-        list.add(selectedContact);
-
-        intent.putStringArrayListExtra("selected", list);
+        MeetingSingleton.setCompanyName(selectedCompany.name);
+        MeetingSingleton.setCompanyName(selectedCompany.id);
+        MeetingSingleton.setContact(selectedContact);
 
         startActivity(intent);
     }
