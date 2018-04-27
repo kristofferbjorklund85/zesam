@@ -1,7 +1,9 @@
 package zesam.src;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.support.v7.widget.Toolbar;
@@ -22,8 +25,10 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class CreateMeeting extends AppCompatActivity {
     private ArrayList<String> list;
@@ -48,6 +53,10 @@ public class CreateMeeting extends AppCompatActivity {
     Date date;
     DateFormat format;
     LocalDate localDate;
+
+    Calendar myCalendar;
+    EditText date_text;
+
 
     public static Activity act;
 
@@ -75,6 +84,36 @@ public class CreateMeeting extends AppCompatActivity {
         textblock = "";
         setDates();
         initDateSpinner(getDay(nMonth), getMonth(), getYear());
+
+        myCalendar = Calendar.getInstance();
+
+        date_text = (EditText) findViewById(R.id.date_text);
+
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+        date_text.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
     }
 
     public void startVoiceInput(View v) {
@@ -101,9 +140,6 @@ public class CreateMeeting extends AppCompatActivity {
                 }
                 break;
             }
-            case 0: {
-                finish();
-            }
         }
     }
 
@@ -111,6 +147,13 @@ public class CreateMeeting extends AppCompatActivity {
         textblock = textblock + text + "\n\n";
 
         recordedText.setText(textblock);
+    }
+
+    private void updateLabel() {
+        String myFormat = "yy/MM/dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+
+        date_text.setText(sdf.format(myCalendar.getTime()));
     }
 
     public void showResult(View v) {
@@ -124,6 +167,11 @@ public class CreateMeeting extends AppCompatActivity {
 
         startActivity(intent);
     }
+
+
+
+
+
 
     public void initDateSpinner(List dayArray, List monthArray, List yearArray) {
         daySpinner   = (Spinner) findViewById(R.id.day_spinner);
