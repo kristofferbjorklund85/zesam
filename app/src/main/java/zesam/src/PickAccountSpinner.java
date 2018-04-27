@@ -53,6 +53,8 @@ public class PickAccountSpinner extends AppCompatActivity {
         createButton = (Button) findViewById(R.id.start_create_meeting_button);
         createButton.setVisibility(View.INVISIBLE);
 
+        Permissions.checkLocationPermission(this);
+
         ctx = this;
         fd = new FakeData();
         initCompanySpinner(fd.getCompanies());

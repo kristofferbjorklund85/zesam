@@ -43,8 +43,6 @@ public class Review extends AppCompatActivity {
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-        getUserLocation();
-
         Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
 
@@ -62,6 +60,9 @@ public class Review extends AppCompatActivity {
 
         text = text + date + "\n\n";
         text = text + desc + "\n\n";
+
+        getUserLocation();
+
         text = text + mapsURL + userLocation.getLatitude() + "," + userLocation.getLongitude();
 
         resultText = (TextView) findViewById(R.id.resultText);
@@ -87,8 +88,7 @@ public class Review extends AppCompatActivity {
     }
 
     public void back(View v) {
-        Intent intent = new Intent(this, CreateMeeting.class);
-        startActivity(intent);
+        onBackPressed();
     }
 
     public void setReminder(View v) { }
@@ -114,9 +114,14 @@ public class Review extends AppCompatActivity {
     }
 
     public void getUserLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
         LocationListener locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
-                userLocation = location;
             }
 
             public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -128,14 +133,10 @@ public class Review extends AppCompatActivity {
             public void onProviderDisabled(String provider) {
             }
         };
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, locationListener);
+        userLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        locationManager.removeUpdates(locationListener);
+        locationManager = null;
     }
 }
 
