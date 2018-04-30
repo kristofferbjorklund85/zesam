@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_plan_meeting);
 
-        intent = new Intent(this, Login.class);
+        intent = new Intent(this, PlanMeeting.class);
         checkCache();
 
         startActivity(intent);

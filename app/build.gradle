@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "zesam.zesam"
+        applicationId "zesam.src"
         minSdkVersion 26
         targetSdkVersion 26
         versionCode 1
@@ -32,4 +32,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation project(':volley')
+    implementation 'com.google.android.gms:play-services-places:15.0.0'
 }
