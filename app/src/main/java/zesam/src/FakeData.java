@@ -1,6 +1,8 @@
 package zesam.src;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class FakeData {
@@ -33,6 +35,21 @@ public class FakeData {
         return list;
     }
 
+    public ArrayList<Meeting> getFutureMeetings() {
+        String myFormat = "yyyy MMM dd HH:mm"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+        int extra = 3600000;
+        long startDate = Calendar.getInstance().getTimeInMillis();
+
+
+        ArrayList<Meeting> compList = new ArrayList<>();
+        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", "" + startDate + (extra * 1)));
+        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", "" + startDate + (extra * 2)));
+        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", "" + startDate + (extra * 3)));
+        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", "" + startDate + (extra * 4)));
+
+        return compList;
+    }
 
     class Company {
         String id;
@@ -46,6 +63,20 @@ public class FakeData {
         @Override
         public String toString() {
             return name;
+        }
+    }
+
+    class Meeting {
+        String comapnyName = "";
+        String contact = "";
+        String description = "";
+        String date = "";
+
+        public Meeting(String cName, String contact, String desc, String date) {
+            this.comapnyName = cName;
+            this.contact = contact;
+            this.description = desc;
+            this.date = date;
         }
     }
 

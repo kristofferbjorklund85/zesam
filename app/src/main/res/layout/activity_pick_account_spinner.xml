@@ -72,11 +72,11 @@
     <Button
         android:id="@+id/start_create_meeting_button"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:layout_marginLeft="64dp"
         android:layout_marginRight="64dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:background="@color/zesamBlack"
         android:gravity="center"
         android:onClick="startSalesMeeting"
@@ -91,20 +91,40 @@
     <Button
         android:id="@+id/view_company_button"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="82dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:layout_marginLeft="64dp"
         android:layout_marginRight="64dp"
+        android:layout_marginTop="32dp"
         android:background="@color/zesamBlack"
         android:gravity="center"
         android:text="View Company"
         android:textColor="@color/zesamBlue"
         android:visibility="invisible"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintBottom_toTopOf="@+id/viewMeetings"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/start_create_meeting_button" />
+
+    <Button
+        android:id="@+id/viewMeetings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/zesamBlack"
+        android:gravity="center"
+        android:onClick="listMeetings"
+        android:text="List Meetings"
+        android:textColor="@color/zesamBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_create_meeting_button" />
+        app:layout_constraintTop_toBottomOf="@+id/view_company_button" />
 
     <android.support.constraint.Guideline
         android:id="@+id/spinner_left_guideline"
