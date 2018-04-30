@@ -3,8 +3,11 @@ package zesam.src;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,6 +17,8 @@ public class ListMeetings extends AppCompatActivity {
 
     FakeData fd;
     ArrayList<FakeData.Meeting> list;
+    //CardView cv;
+    LinearLayout ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +30,38 @@ public class ListMeetings extends AppCompatActivity {
 
         fd = new FakeData();
         list = fd.getFutureMeetings();
+        //cv = findViewById(R.id.meetings_cardview);
+        ll = findViewById(R.id.linelay);
 
-        TextView tv = findViewById(R.id.test_text);
-        tv.setText(list.get(0).description);
+        initCards();
+    }
+
+    public void initCards() {
+
+        for (FakeData.Meeting m : list) {
+            CardView cv = new CardView(this);
+
+            cv.setContentPadding(15, 15, 15, 15);
+            cv.setPreventCornerOverlap(false);
+            cv.setRadius(9);
+            cv.setUseCompatPadding(true);
+
+            TextView tv = new TextView(this);
+            String text =
+                    "Company: " + m.comapnyName + "\n" +
+                    "Contact: " + m.contact + "\n" +
+                    "Date: " + m.date + "\n" +
+                    "Desc: " + m.description;
+
+            tv.setText(text);
+            cv.addView(tv);
+
+            ll.addView(cv);
+        }
 
     }
+
+
 
 
     public void logOut(View v) {

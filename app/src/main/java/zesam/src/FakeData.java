@@ -3,6 +3,7 @@ package zesam.src;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class FakeData {
@@ -36,17 +37,15 @@ public class FakeData {
     }
 
     public ArrayList<Meeting> getFutureMeetings() {
-        String myFormat = "yyyy MMM dd HH:mm"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
         int extra = 3600000;
         long startDate = Calendar.getInstance().getTimeInMillis();
 
 
         ArrayList<Meeting> compList = new ArrayList<>();
-        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", "" + startDate + (extra * 1)));
-        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", "" + startDate + (extra * 2)));
-        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", "" + startDate + (extra * 3)));
-        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", "" + startDate + (extra * 4)));
+        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", startDate + (extra * 1)));
+        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", startDate + (extra * 2)));
+        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", startDate + (extra * 3)));
+        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", startDate + (extra * 4)));
 
         return compList;
     }
@@ -72,11 +71,15 @@ public class FakeData {
         String description = "";
         String date = "";
 
-        public Meeting(String cName, String contact, String desc, String date) {
+        public Meeting(String cName, String contact, String desc, long date) {
+            String myFormat = "yyyy MMM dd HH:mm"; //In which you need put here
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+            Date dt = new Date(date);
+
             this.comapnyName = cName;
             this.contact = contact;
             this.description = desc;
-            this.date = date;
+            this.date = sdf.format(dt);
         }
     }
 
