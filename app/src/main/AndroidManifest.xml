@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+
     <uses-feature android:name="android.hardware.location.gps" />
 
     <application
@@ -29,7 +30,11 @@
         <activity android:name=".CreateMeeting" />
         <activity android:name=".PickAccountSpinner" />
         <activity android:name=".Review" />
-        <activity android:name=".ListMeetings"></activity>
+        <activity android:name=".PlanMeeting"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCSZdattaRQB9-BOj6Ti4-TV088N3E0kdA"/>
     </application>
 
 </manifest>
