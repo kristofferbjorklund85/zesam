@@ -42,10 +42,9 @@ public class FakeData {
 
 
         ArrayList<Meeting> compList = new ArrayList<>();
-        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", startDate + (extra * 1)));
-        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", startDate + (extra * 2)));
-        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", startDate + (extra * 3)));
-        compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", startDate + (extra * 4)));
+        for(int i = 1; i < 3; i++) {
+            compList.add(new Meeting("Volvo", "Peter Andersson", "test test test", startDate + (extra * i)));
+        }
 
         return compList;
     }

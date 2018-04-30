@@ -17,7 +17,6 @@ public class ListMeetings extends AppCompatActivity {
 
     FakeData fd;
     ArrayList<FakeData.Meeting> list;
-    //CardView cv;
     LinearLayout ll;
 
     @Override
@@ -30,7 +29,6 @@ public class ListMeetings extends AppCompatActivity {
 
         fd = new FakeData();
         list = fd.getFutureMeetings();
-        //cv = findViewById(R.id.meetings_cardview);
         ll = findViewById(R.id.linelay);
 
         initCards();
