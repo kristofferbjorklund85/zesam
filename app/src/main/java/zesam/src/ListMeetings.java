@@ -49,9 +49,11 @@ public class ListMeetings extends AppCompatActivity {
                     "Company: " + m.comapnyName + "\n" +
                     "Contact: " + m.contact + "\n" +
                     "Date: " + m.date + "\n" +
-                    "Desc: " + m.description;
+                    "Description: " + shortenText(m.description);
 
             tv.setText(text);
+            tv.setTextSize(14);
+            tv.setTextColor(getColor(R.color.zesamBlack));
             cv.addView(tv);
 
             ll.addView(cv);
@@ -59,7 +61,13 @@ public class ListMeetings extends AppCompatActivity {
 
     }
 
+    public String shortenText(String text) {
+        if(text.length() > 75) {
+            text = text.substring(0,72) + "...";
+        }
 
+        return text;
+    }
 
 
     public void logOut(View v) {
