@@ -30,6 +30,7 @@
         <activity android:name=".CreateMeeting" />
         <activity android:name=".PickAccountSpinner" />
         <activity android:name=".Review" />
+        <activity android:name=".ListMeetings" />
         <activity android:name=".PlanMeeting"></activity>
 
         <meta-data
