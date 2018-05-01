@@ -46,9 +46,9 @@ public class ListMeetings extends AppCompatActivity {
 
             TextView tv = new TextView(this);
             String text =
+                    "Date: " + m.date + "\n" +
                     "Company: " + m.comapnyName + "\n" +
                     "Contact: " + m.contact + "\n" +
-                    "Date: " + m.date + "\n" +
                     "Description: " + shortenText(m.description);
 
             tv.setText(text);

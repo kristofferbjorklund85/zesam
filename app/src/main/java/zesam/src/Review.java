@@ -36,6 +36,8 @@ public class Review extends AppCompatActivity {
     LocationManager locationManager;
     Location userLocation;
     String mapsURL;
+    MeetingSingleton ms;
+    String coords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class Review extends AppCompatActivity {
         Intent intent = getIntent();
         mapsURL = getResources().getString(R.string.gMaps_url);
 
-        MeetingSingleton ms = MeetingSingleton.getMeeting();
+        ms = MeetingSingleton.getMeeting();
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
@@ -72,7 +74,8 @@ public class Review extends AppCompatActivity {
         getUserLocation();
 
         resultText2.setClickable(true);
-        MeetingSingleton.setMapsURL(mapsURL + userLocation.getLatitude() + "," + userLocation.getLongitude());
+        coords = userLocation.getLatitude() + "," + userLocation.getLongitude();
+        MeetingSingleton.setMapsURL(mapsURL + coords);
         resultText2.setText(text + ms.mapsURL);
 
     }
@@ -99,9 +102,9 @@ public class Review extends AppCompatActivity {
     }
 
     public void createReminder() {
-        String title = "Påminnelse säljmöte " + list.get(1);
-        String desc = "Påminnelse om uppföljning av möte med " + list.get(2);
-        String place = "";
+        String title = "Påminnelse säljmöte " + ms.comapnyName;
+        String desc = "Påminnelse om uppföljning av möte med " + ms.contact;
+        String place = coords;
 
         long startDate = Calendar.getInstance().getTimeInMillis() + 3600000;
         long endDate = startDate + 1000 * 10 * 10;
