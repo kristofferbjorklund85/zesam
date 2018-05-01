@@ -17,6 +17,8 @@ public class PlanMeeting extends AppCompatActivity {
     private GeoDataClient mGeoDataClient;
     private PlaceDetectionClient mPlaceDetectionClient;
 
+    private String location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,13 +34,11 @@ public class PlanMeeting extends AppCompatActivity {
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                // TODO: Get info about the selected place.
-                Log.d("PlaceSelected", "Place: " + place.getName());
+                location = place.getName().toString();
             }
 
             @Override
             public void onError(Status status) {
-                // TODO: Handle the error.
                 Log.d("PlaceSelected", "An error occurred: " + status);
             }
         });
