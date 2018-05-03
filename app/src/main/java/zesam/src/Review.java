@@ -135,7 +135,8 @@ public class Review extends AppCompatActivity {
             @Override
             public void onSuccess(Location location) {
                 if(location != null) {
-                    MeetingSingleton.setMapsURL(mapsURL + location.getLatitude() + "," + location.getLongitude());
+                    coords = location.getLatitude() + "," + location.getLongitude();
+                    MeetingSingleton.setMapsURL(mapsURL + coords);
                     resultText2.setText(text + ms.mapsURL);
                 }
             }
