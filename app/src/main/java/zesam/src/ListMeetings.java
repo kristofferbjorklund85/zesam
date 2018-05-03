@@ -75,7 +75,6 @@ public class ListMeetings extends AppCompatActivity {
         return text;
     }
 
-
     public void logOut(View v) {
         Intent intent = new Intent(getApplicationContext(), Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
