@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
@@ -30,6 +31,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 public class CreateMeeting extends AppCompatActivity {
 
@@ -39,6 +41,7 @@ public class CreateMeeting extends AppCompatActivity {
     Calendar myCalendar;
     EditText date_text;
     DatePickerDialog.OnDateSetListener dateListener;
+    TextView ccText;
 
     public static Activity act;
 
@@ -56,8 +59,14 @@ public class CreateMeeting extends AppCompatActivity {
         Toolbar t = findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
 
-        Intent intent = getIntent();
+        TextView ccText = findViewById(R.id.cc_text);
 
+        String s = MeetingSingleton.getContact();
+        int trim = s.indexOf("(") - 1;
+
+        ccText.setText(s.substring(0, trim) + "\n" + MeetingSingleton.getCompanyName());
+
+        Intent intent = getIntent();
 
         recordedText = (EditText) findViewById(R.id.recorded_text);
         if(!MeetingSingleton.getDescription().equals("")) {

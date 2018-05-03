@@ -42,6 +42,10 @@ public class MeetingSingleton {
         return ms.description;
     }
 
+    public static String getContact() {
+        return ms.contact;
+    }
+
     public static String getDate() {
         return ms.date;
     }
