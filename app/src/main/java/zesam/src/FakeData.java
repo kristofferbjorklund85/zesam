@@ -70,7 +70,7 @@ public class FakeData {
     }
 
     class Meeting {
-        String comapnyName = "";
+        String companyName = "";
         String contact = "";
         String description = "";
         String date = "";
@@ -81,7 +81,7 @@ public class FakeData {
             SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
             Date dt = new Date(date);
 
-            this.comapnyName = cName;
+            this.companyName = cName;
             this.contact = contact;
             this.description = desc;
             this.date = sdf.format(dt);

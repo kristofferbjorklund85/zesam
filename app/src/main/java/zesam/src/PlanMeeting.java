@@ -13,14 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.GeoDataClient;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.PlaceDetectionClient;
-import com.google.android.gms.location.places.Places;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,7 +106,7 @@ public class PlanMeeting extends AppCompatActivity {
             FakeData.Meeting meet = meetList.get(position);
             holder.listmeetingdate.setText(meet.date);
             holder.listmeetingorganizer.setText(meet.organizer);
-            holder.listmeetingcompany.setText(meet.comapnyName);
+            holder.listmeetingcompany.setText(meet.companyName);
             holder.listmeetingcontact.setText(meet.contact);
             holder.listmeetingdesc.setText(shortenText(meet.description));
 

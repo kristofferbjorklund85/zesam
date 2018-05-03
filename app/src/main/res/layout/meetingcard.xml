@@ -36,7 +36,7 @@
                 app:layout_constraintGuide_begin="31dp" />
 
             <TextView
-                android:id="@+id/listmeetingcontact"
+                android:id="@+id/listmeetingcompany"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -89,7 +89,7 @@
                 app:layout_constraintGuide_begin="192dp" />
 
             <TextView
-                android:id="@+id/listmeetingcompany"
+                android:id="@+id/listmeetingcontact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
