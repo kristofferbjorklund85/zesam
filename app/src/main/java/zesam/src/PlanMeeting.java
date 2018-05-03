@@ -1,8 +1,10 @@
 package zesam.src;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -43,17 +45,28 @@ public class PlanMeeting extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new MeetingAdapter(this, list);
 
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
 
         fd = new FakeData();
         list = fd.getFutureMeetings();
-
+        adapter.notifyDataSetChanged();
 
     }
 
 
 
+    public void logOut(View v) {
+        Intent intent = new Intent(getApplicationContext(), Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
+    public void back(View v) {
+        Intent intent = new Intent(this, PickAccountSpinner.class);
+        startActivity(intent);
+    }
 
 
     public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MyViewHolder> {
