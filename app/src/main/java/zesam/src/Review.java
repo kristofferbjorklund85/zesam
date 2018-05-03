@@ -21,6 +21,12 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.tasks.OnSuccessListener;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,13 +37,15 @@ public class Review extends AppCompatActivity {
     private TextView resultText1;
     private TextView resultText2;
     private TextView resultDate;
-    ArrayList<String> list;
+
     CheckBox cb;
-    LocationManager locationManager;
-    Location userLocation;
+    private FusedLocationProviderClient mFusedLocationClient;
+
     String mapsURL;
     MeetingSingleton ms;
-    String coords;
+    String coords = "";
+
+    String text = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +56,9 @@ public class Review extends AppCompatActivity {
 
         ms = MeetingSingleton.getMeeting();
 
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        getUserLocation();
 
         Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
@@ -67,17 +77,9 @@ public class Review extends AppCompatActivity {
         resultText1.setText(headText);
         resultDate.setText(ms.date);
 
-        String text = "";
-
         text = text + ms.description + "\n\n";
 
-        getUserLocation();
-
         resultText2.setClickable(true);
-        coords = userLocation.getLatitude() + "," + userLocation.getLongitude();
-        MeetingSingleton.setMapsURL(mapsURL + coords);
-        resultText2.setText(text + ms.mapsURL);
-
     }
 
     public void backToPickAccount(View v) {
@@ -128,8 +130,20 @@ public class Review extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        LocationListener locationListener = new LocationListener() {
+
+        mFusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if(location != null) {
+                    MeetingSingleton.setMapsURL(mapsURL + location.getLatitude() + "," + location.getLongitude());
+                    resultText2.setText(text + ms.mapsURL);
+                }
+            }
+        });
+
+        /*LocationListener locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
+                userLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             }
 
             public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -143,8 +157,7 @@ public class Review extends AppCompatActivity {
         };
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, locationListener);
         userLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        locationManager.removeUpdates(locationListener);
-        locationManager = null;
+        locationManager.removeUpdates(locationListener);*/
     }
 }
 
