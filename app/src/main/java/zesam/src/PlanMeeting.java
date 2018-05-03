@@ -42,20 +42,27 @@ public class PlanMeeting extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.plan_recycler);
 
-        list = new ArrayList<>();
+        fd = new FakeData();
+        list = fd.getFutureMeetings();
         adapter = new MeetingAdapter(this, list);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
 
-        fd = new FakeData();
-        list = fd.getFutureMeetings();
+
         adapter.notifyDataSetChanged();
+        Log.d("Adapter: ", "" + adapter.getItemCount());
 
     }
 
+    public String shortenText(String text) {
+        if(text.length() > 30) {
+            text = text.substring(0,27) + "...";
+        }
 
+        return text;
+    }
 
     public void logOut(View v) {
         Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -85,6 +92,7 @@ public class PlanMeeting extends AppCompatActivity {
                 listmeetingcompany = (TextView) view.findViewById(R.id.listmeetingcompany);
                 listmeetingcontact = (TextView) view.findViewById(R.id.listmeetingcontact);
                 listmeetingdesc = (TextView) view.findViewById(R.id.listmeetingdesc);
+
             }
         }
 
@@ -108,8 +116,7 @@ public class PlanMeeting extends AppCompatActivity {
             holder.listmeetingorganizer.setText(meet.organizer);
             holder.listmeetingcompany.setText(meet.comapnyName);
             holder.listmeetingcontact.setText(meet.contact);
-            holder.listmeetingdesc.setText(meet.description);
-
+            holder.listmeetingdesc.setText(shortenText(meet.description));
 
         }
 
