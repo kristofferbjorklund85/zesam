@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
@@ -43,6 +46,10 @@ public class CreateMeeting extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener dateListener;
     TextView ccText;
 
+    float speechSpeed = 0.7f;
+
+    TextToSpeech tts;
+
     public static Activity act;
 
     private EditText recordedText;
@@ -59,7 +66,7 @@ public class CreateMeeting extends AppCompatActivity {
         Toolbar t = findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
 
-        TextView ccText = findViewById(R.id.cc_text);
+        ccText = findViewById(R.id.cc_text);
 
         String s = MeetingSingleton.getContact();
         int trim = s.indexOf("(") - 1;
@@ -89,6 +96,7 @@ public class CreateMeeting extends AppCompatActivity {
 
         initDatePicker();
 
+        textToSpeechTest();
     }
 
     private void initDatePicker() {
@@ -119,14 +127,14 @@ public class CreateMeeting extends AppCompatActivity {
     }
 
     public void startVoiceInput(View v) {
+        tts.speak("What happened in general during the meeting", TextToSpeech.QUEUE_FLUSH, null);
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "sv-SE");
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Säg nåt");
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Record Description");
         try {
             startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
         } catch (ActivityNotFoundException a) {
-
         }
     }
 
@@ -138,7 +146,10 @@ public class CreateMeeting extends AppCompatActivity {
             case REQ_CODE_SPEECH_INPUT: {
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    setVoiceInputText(result.get(0));
+                    String finishedText = result.get(0);
+                    finishedText = finishedText.substring(finishedText.indexOf("meeting")+8);
+                    finishedText.trim();
+                    setVoiceInputText(finishedText);
                 }
                 break;
             }
@@ -164,6 +175,16 @@ public class CreateMeeting extends AppCompatActivity {
 
     public void clearRecordedText(View v) {
         recordedText.setText("");
+    }
+
+    public void textToSpeechTest() {
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                tts.setLanguage(Locale.US);
+                tts.setSpeechRate(speechSpeed);
+            }
+        });
     }
 
     public void logOut(View v) {
