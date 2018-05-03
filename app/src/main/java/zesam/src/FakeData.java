@@ -12,11 +12,12 @@ public class FakeData {
 
         ArrayList<Company> compList = new ArrayList<>();
         compList.add(new Company("0", ""));
-        compList.add(new Company("1", "Volvo"));
-        compList.add(new Company("2", "Ericsson"));
-        compList.add(new Company("3", "NCC"));
+        compList.add(new Company("1", "New Company"));
+        compList.add(new Company("2", "Volvo"));
+        compList.add(new Company("3", "Ericsson"));
+        compList.add(new Company("4", "NCC"));
 
-        for(int i = 4; i < 25; i++) {
+        for(int i = 4; i < 100; i++) {
             compList.add(new Company("" + i, "Company" + i));
         }
 
@@ -27,6 +28,7 @@ public class FakeData {
     public List getContacts(String company) {
         ArrayList<String> list = new ArrayList<String>();
         list.add("");
+        list.add("New Contact (" + company + ")");
         list.add("Pelle Jansson (" + company + ")");
         list.add("Kalle Jonsson (" + company + ")");
         list.add("Leif Olsson (" + company + ")");

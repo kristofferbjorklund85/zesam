@@ -108,7 +108,7 @@ public class Review extends AppCompatActivity {
         String desc = "Påminnelse om uppföljning av möte med " + ms.contact;
         String place = coords;
 
-        long startDate = Calendar.getInstance().getTimeInMillis() + 3600000;
+        long startDate = Calendar.getInstance().getTimeInMillis() + 86400000;
         long endDate = startDate + 1000 * 10 * 10;
 
         Intent intent = new Intent(Intent.ACTION_INSERT)
@@ -135,8 +135,8 @@ public class Review extends AppCompatActivity {
             @Override
             public void onSuccess(Location location) {
                 if(location != null) {
-                    coords = location.getLatitude() + "," + location.getLongitude();
-                    MeetingSingleton.setMapsURL(mapsURL + coords);
+                    coords = location.getLatitude() + ", " + location.getLongitude();
+                    MeetingSingleton.setMapsURL(mapsURL + coords.replaceAll("\\s+",""));
                     resultText2.setText(text + ms.mapsURL);
                 }
             }

@@ -60,7 +60,6 @@ public class ListMeetings extends AppCompatActivity {
             tv.setTextSize(18);
             tv.setTextColor(getColor(R.color.zesamBlack));
 
-
             cv.addView(tv);
 
             ll.addView(cv);
