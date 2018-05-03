@@ -139,6 +139,11 @@ public class PickAccountSpinner extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void startPlanMeeting(View v){
+        Intent intent = new Intent(this, PlanMeeting.class);
+        startActivity(intent);
+    }
+
     public void listMeetings(View v) {
         Intent intent = new Intent(this, ListMeetings.class);
         startActivity(intent);
