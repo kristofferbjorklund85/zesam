@@ -162,6 +162,10 @@ public class CreateMeeting extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void clearRecordedText(View v) {
+        recordedText.setText("");
+    }
+
     public void logOut(View v) {
         Intent intent = new Intent(getApplicationContext(), Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
