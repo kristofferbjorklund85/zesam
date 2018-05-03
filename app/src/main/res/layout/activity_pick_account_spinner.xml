@@ -99,7 +99,7 @@
         android:background="@color/zesamBlack"
         android:gravity="center"
         android:onClick="startPlanMeeting"
-        android:text="View Company"
+        android:text="Plan Meeting"
         android:textColor="@color/zesamBlue"
         app:layout_constraintBottom_toTopOf="@+id/viewMeetings"
         app:layout_constraintHorizontal_bias="0.501"
