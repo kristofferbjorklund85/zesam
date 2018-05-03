@@ -52,6 +52,7 @@ public class PlanMeeting extends AppCompatActivity {
         fd = new FakeData();
         list = fd.getFutureMeetings();
         adapter.notifyDataSetChanged();
+        Log.d("Adapter: ", "" + adapter.getItemCount());
 
     }
 
