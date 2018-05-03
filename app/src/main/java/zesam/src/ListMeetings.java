@@ -1,10 +1,13 @@
 package zesam.src;
 
+import android.content.Context;
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -44,16 +47,20 @@ public class ListMeetings extends AppCompatActivity {
             cv.setRadius(9);
             cv.setUseCompatPadding(true);
 
+            //REMOVE
             TextView tv = new TextView(this);
             String text =
-                    "Date: " + m.date + "\n" +
+                    m.date + "\n" +
+                    "Organizer: " + m.organizer + "\n" +
                     "Company: " + m.comapnyName + "\n" +
                     "Contact: " + m.contact + "\n" +
                     "Description: " + shortenText(m.description);
 
             tv.setText(text);
-            tv.setTextSize(14);
+            tv.setTextSize(18);
             tv.setTextColor(getColor(R.color.zesamBlack));
+
+
             cv.addView(tv);
 
             ll.addView(cv);
@@ -79,4 +86,5 @@ public class ListMeetings extends AppCompatActivity {
     public void back(View v) {
         onBackPressed();
     }
+
 }
