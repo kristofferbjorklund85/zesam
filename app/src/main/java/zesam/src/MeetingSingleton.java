@@ -1,5 +1,8 @@
 package zesam.src;
 
+import android.content.Context;
+import android.content.Intent;
+
 import java.util.ArrayList;
 
 public class MeetingSingleton {
@@ -9,7 +12,7 @@ public class MeetingSingleton {
     String description = "";
     String date = "";
     String mapsURL = "";
-    ArrayList<FakeData.Meeting> meetList = new ArrayList<>();
+
 
     private static MeetingSingleton ms = new MeetingSingleton();
 
@@ -37,12 +40,6 @@ public class MeetingSingleton {
         ms.mapsURL = mapsURL;
     }
 
-    public static void setMeetList(ArrayList<FakeData.Meeting> list) {
-        for (FakeData.Meeting m: list) {
-            ms.meetList.add(m);
-        }
-    }
-
     public static String getCompanyName() {
         return ms.comapnyName;
     }
@@ -61,10 +58,6 @@ public class MeetingSingleton {
 
     public static MeetingSingleton getMeeting() {
         return ms;
-    }
-
-    public static ArrayList<FakeData.Meeting> getMeetList() {
-        return ms.meetList;
     }
 
     public static void clearMeeting() {

@@ -70,7 +70,7 @@ public class PlanMeeting extends AppCompatActivity {
             }
         }
 
-        MeetingSingleton.setMeetList(importList);
+        fd.setMeetList(importList);
 
         Intent intent = new Intent(this, ListMeetings.class);
         startActivity(intent);
@@ -78,6 +78,7 @@ public class PlanMeeting extends AppCompatActivity {
     }
 
     public void logOut(View v) {
+        MeetingSingleton.clearMeeting();
         Intent intent = new Intent(getApplicationContext(), Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
