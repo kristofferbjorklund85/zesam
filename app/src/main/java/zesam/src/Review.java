@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
@@ -82,14 +83,15 @@ public class Review extends AppCompatActivity {
         resultText2.setClickable(true);
     }
 
-    public void backToPickAccount(View v) {
+    public void submitReport(View v) {
         PickAccountSpinner.act.finish();
         CreateMeeting.act.finish();
 
         if (cb.isChecked()) {
             createReminder();
         }
-
+        Toast toast = Toast.makeText(this, "Your report has been submitted", Toast.LENGTH_LONG);
+        toast.show();
         finish();
     }
 

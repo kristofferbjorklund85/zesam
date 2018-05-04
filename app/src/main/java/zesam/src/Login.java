@@ -27,6 +27,13 @@ public class Login extends AppCompatActivity{
         setSupportActionBar(t);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = new Intent(this, PickAccountSpinner.class);
+        startActivity(intent);
+    }
+
     public void signIn(View v) {
         saveCred(username.getText().toString(), password.getText().toString());
         Intent intent = new Intent(this, PickAccountSpinner.class);
