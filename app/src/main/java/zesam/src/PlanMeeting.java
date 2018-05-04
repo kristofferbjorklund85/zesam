@@ -83,7 +83,7 @@ public class PlanMeeting extends AppCompatActivity {
     }
 
     public void back(View v) {
-        Intent intent = new Intent(this, PickAccountSpinner.class);
+        Intent intent = new Intent(this, Root.class);
         startActivity(intent);
     }
 

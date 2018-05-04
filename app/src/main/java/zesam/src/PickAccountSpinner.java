@@ -39,8 +39,6 @@ public class PickAccountSpinner extends AppCompatActivity {
 
         Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
-        Button b = (Button) findViewById(R.id.back_button);
-        b.setVisibility(View.INVISIBLE);
         sContacts = (Spinner) findViewById(R.id.contact_spinner);
         sContacts.setVisibility(View.INVISIBLE);
         tContact = (TextView) findViewById(R.id.contact_text);
@@ -156,7 +154,7 @@ public class PickAccountSpinner extends AppCompatActivity {
     }
 
     public void back(View v) {
-        Intent intent = new Intent(this, PickAccountSpinner.class);
+        Intent intent = new Intent(this, Root.class);
         startActivity(intent);
     }
 
