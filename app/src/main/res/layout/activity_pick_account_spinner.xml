@@ -32,6 +32,7 @@
         android:layout_marginTop="8dp"
         android:background="@android:drawable/spinner_background"
         android:dropDownSelector="@color/zesamBlue"
+        android:spinnerMode="dialog"
         android:textAlignment="center"
         android:theme="@style/HighlightPressedColor"
         app:layout_constraintBottom_toTopOf="@+id/company_bottom_guideline"

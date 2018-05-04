@@ -136,7 +136,7 @@ public class PickAccountSpinner extends AppCompatActivity {
 
         startActivity(intent);
     }
-    
+
     public void logOut(View v) {
         MeetingSingleton.clearMeeting();
         Intent intent = new Intent(getApplicationContext(), Login.class);
