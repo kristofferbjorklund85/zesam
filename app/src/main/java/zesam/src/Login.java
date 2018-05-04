@@ -36,7 +36,7 @@ public class Login extends AppCompatActivity{
 
     public void signIn(View v) {
         saveCred(username.getText().toString(), password.getText().toString());
-        Intent intent = new Intent(this, PickAccountSpinner.class);
+        Intent intent = new Intent(this, Root.class);
         startActivity(intent);
     }
 

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class ListMeetings extends AppCompatActivity {
 
+    FakeData fd;
     ArrayList<FakeData.Meeting> list;
     LinearLayout ll;
 
@@ -24,7 +25,8 @@ public class ListMeetings extends AppCompatActivity {
         Toolbar t = findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
 
-        list = MeetingSingleton.getMeetList();
+        fd = new FakeData();
+        list = fd.getMeetList();
         ll = findViewById(R.id.linelay);
 
         initCards();
@@ -73,7 +75,8 @@ public class ListMeetings extends AppCompatActivity {
     }
 
     public void logOut(View v) {
-        Intent intent = new Intent(getApplicationContext(), Login.class);
+        MeetingSingleton.clearMeeting();
+        Intent intent = new Intent(this, Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

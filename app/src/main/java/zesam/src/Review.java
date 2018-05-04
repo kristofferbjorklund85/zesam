@@ -96,6 +96,7 @@ public class Review extends AppCompatActivity {
     }
 
     public void logOut(View v) {
+        MeetingSingleton.clearMeeting();
         Intent intent = new Intent(getApplicationContext(), Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

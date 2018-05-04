@@ -8,6 +8,8 @@ import java.util.List;
 
 public class FakeData {
 
+    private static ArrayList<FakeData.Meeting> meetList = new ArrayList<>();
+
     public List getCompanies() {
 
         ArrayList<Company> compList = new ArrayList<>();
@@ -53,6 +55,15 @@ public class FakeData {
     }
 
 
+    public void setMeetList(ArrayList<FakeData.Meeting> list) {
+        for (FakeData.Meeting m: list) {
+            meetList.add(m);
+        }
+    }
+
+    public ArrayList<FakeData.Meeting> getMeetList() {
+        return meetList;
+    }
 
     class Company {
         String id;
