@@ -136,17 +136,7 @@ public class PickAccountSpinner extends AppCompatActivity {
 
         startActivity(intent);
     }
-
-    public void startPlanMeeting(View v){
-        Intent intent = new Intent(this, PlanMeeting.class);
-        startActivity(intent);
-    }
-
-    public void listMeetings(View v) {
-        Intent intent = new Intent(this, ListMeetings.class);
-        startActivity(intent);
-    }
-
+    
     public void logOut(View v) {
         MeetingSingleton.clearMeeting();
         Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -158,50 +148,5 @@ public class PickAccountSpinner extends AppCompatActivity {
         Intent intent = new Intent(this, Root.class);
         startActivity(intent);
     }
-
-    /*public void getTest() {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET,
-                "https://ghibliapi.herokuapp.com/films/",
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray array) {
-                        //Log.d("Volley Success", "Downloaded JSONArray");
-                        convertJsonToArray(array);
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("ERROR getTest cause: ", error.toString());
-                if(error.networkResponse.statusCode == 404) {
-                    Toast.makeText(ctx, "Something went wrong!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        VolleySingleton.getInstance(ctx).addToRequestQueue(jsonArrayRequest);
-    }
-*/
-
-    /*public void convertJsonToArray(JSONArray array) {
-        List<FakeData.Company> spinnerArray =  new ArrayList<>();
-
-        if (array != null) {
-            int len = array.length();
-            for (int i=0;i<len;i++){
-                try{
-                    JSONObject object = array.getJSONObject(i);
-                    FakeData.Company com = new FakeData.Company(object.getString("id"), object.getString("title"));
-                    spinnerArray.add(com);
-                } catch (JSONException e) {
-                    Log.d("JSONException", e.getMessage());
-                    break;
-                }
-            }
-        }
-
-        initSpinner(spinnerArray);
-    }*/
 
 }
