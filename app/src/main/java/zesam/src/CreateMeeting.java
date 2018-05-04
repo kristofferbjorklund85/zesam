@@ -3,43 +3,25 @@ package zesam.src;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.text.DateFormat;
-import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import java.util.Locale;
-import java.util.UUID;
 
 public class CreateMeeting extends AppCompatActivity {
-
-    private ArrayList<String> list;
-
     SimpleDateFormat sdf;
     Calendar myCalendar;
     EditText date_text;
@@ -49,6 +31,12 @@ public class CreateMeeting extends AppCompatActivity {
     float speechSpeed = 0.7f;
 
     TextToSpeech tts;
+
+    String firstLine;
+    String secondLine;
+    String thirdLine;
+
+    static int recordedLines = 1;
 
     public static Activity act;
 
@@ -63,8 +51,20 @@ public class CreateMeeting extends AppCompatActivity {
         setContentView(R.layout.activity_create_meeting);
         act = this;
 
-        Toolbar t = findViewById(R.id.toolbar_logged_in);
+        firstLine = getResources().getString(R.string.recorded_first_line);
+        secondLine = getResources().getString(R.string.recorded_second_line);
+        thirdLine = getResources().getString(R.string.recorded_third_line);
+
+        Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
+
+        Button record_button = (Button) findViewById(R.id.record_button);
+        record_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startVoiceInput();
+            }
+        });
 
         ccText = findViewById(R.id.cc_text);
 
@@ -126,8 +126,16 @@ public class CreateMeeting extends AppCompatActivity {
         });
     }
 
-    public void startVoiceInput(View v) {
-        tts.speak("What happened in general during the meeting", TextToSpeech.QUEUE_FLUSH, null);
+    public void startVoiceInput() {
+        switch(recordedLines) {
+            case 1: tts.speak(firstLine, TextToSpeech.QUEUE_FLUSH, null);
+                    break;
+            case 2: tts.speak(secondLine, TextToSpeech.QUEUE_FLUSH, null);
+                    break;
+            case 3: tts.speak(thirdLine, TextToSpeech.QUEUE_FLUSH, null);
+                    break;
+        }
+
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "sv-SE");
@@ -147,7 +155,18 @@ public class CreateMeeting extends AppCompatActivity {
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     String finishedText = result.get(0);
-                    finishedText = finishedText.substring(finishedText.indexOf("meeting")+8);
+                    switch(recordedLines) {
+                        case 1: finishedText = finishedText.substring(finishedText.indexOf("meeting")+8);
+                                recordedLines++;
+                                startVoiceInput();
+                                break;
+                        case 2: finishedText = finishedText.substring(finishedText.indexOf("points")+7);
+                                recordedLines++;
+                                startVoiceInput();
+                                break;
+                        case 3: finishedText = finishedText.substring(finishedText.indexOf("client")+7);
+                                break;
+                    }
                     finishedText.trim();
                     setVoiceInputText(finishedText);
                 }
@@ -175,6 +194,7 @@ public class CreateMeeting extends AppCompatActivity {
 
     public void clearRecordedText(View v) {
         recordedText.setText("");
+        recordedLines = 1;
     }
 
     public void textToSpeechTest() {

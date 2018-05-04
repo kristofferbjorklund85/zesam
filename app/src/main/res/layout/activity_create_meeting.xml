@@ -156,7 +156,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/zesamBlack"
-        android:onClick="startVoiceInput"
         android:text="Record"
         android:textColor="@color/zesamBlue"
         app:layout_constraintBottom_toBottomOf="parent"
