@@ -9,17 +9,20 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class CreateMeeting extends AppCompatActivity {
     SimpleDateFormat sdf;
@@ -28,7 +31,7 @@ public class CreateMeeting extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener dateListener;
     TextView ccText;
 
-    float speechSpeed = 0.7f;
+    float speechSpeed = 0.6f;
 
     TextToSpeech tts;
 
@@ -129,10 +132,25 @@ public class CreateMeeting extends AppCompatActivity {
     public void startVoiceInput() {
         switch(recordedLines) {
             case 1: tts.speak(firstLine, TextToSpeech.QUEUE_FLUSH, null);
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(3000);
+                    } catch(InterruptedException e) {
+                        Log.d("Error", e.getMessage());
+                    }
                     break;
             case 2: tts.speak(secondLine, TextToSpeech.QUEUE_FLUSH, null);
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(2900);
+                    } catch(InterruptedException e) {
+                        Log.d("Error", e.getMessage());
+                    }
                     break;
             case 3: tts.speak(thirdLine, TextToSpeech.QUEUE_FLUSH, null);
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(3300);
+                    } catch(InterruptedException e) {
+                        Log.d("Error", e.getMessage());
+                    }
                     break;
         }
 
@@ -154,21 +172,15 @@ public class CreateMeeting extends AppCompatActivity {
             case REQ_CODE_SPEECH_INPUT: {
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    String finishedText = result.get(0);
+                    setVoiceInputText(result.get(0));
                     switch(recordedLines) {
-                        case 1: finishedText = finishedText.substring(finishedText.indexOf("meeting")+8);
-                                recordedLines++;
+                        case 1: recordedLines++;
                                 startVoiceInput();
                                 break;
-                        case 2: finishedText = finishedText.substring(finishedText.indexOf("points")+7);
-                                recordedLines++;
+                        case 2: recordedLines++;
                                 startVoiceInput();
-                                break;
-                        case 3: finishedText = finishedText.substring(finishedText.indexOf("client")+7);
                                 break;
                     }
-                    finishedText.trim();
-                    setVoiceInputText(finishedText);
                 }
                 break;
             }
@@ -193,7 +205,8 @@ public class CreateMeeting extends AppCompatActivity {
     }
 
     public void clearRecordedText(View v) {
-        recordedText.setText("");
+        recordedText.getText().clear();
+        textblock = "";
         recordedLines = 1;
     }
 
@@ -215,5 +228,10 @@ public class CreateMeeting extends AppCompatActivity {
 
     public void back(View v) {
         onBackPressed();
+    }
+
+    public void photo(View v) {
+        Toast toast = Toast.makeText(act, "Photo functionailty is not implemented", Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
