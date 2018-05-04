@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class ListMeetings extends AppCompatActivity {
 
-    FakeData fd;
     ArrayList<FakeData.Meeting> list;
     LinearLayout ll;
 
@@ -33,31 +32,36 @@ public class ListMeetings extends AppCompatActivity {
 
     public void initCards() {
 
-        for (FakeData.Meeting m : list) {
-            CardView cv = new CardView(this);
+        if(list.size() == 0) {
+            TextView tv = (TextView) findViewById(R.id.emptyText);
+            tv.setText("No meetings planned!");
 
-            cv.setContentPadding(15, 15, 15, 15);
-            cv.setPreventCornerOverlap(false);
-            cv.setRadius(9);
-            cv.setUseCompatPadding(true);
+        } else {
+            for (FakeData.Meeting m : list) {
+                CardView cv = new CardView(this);
 
-            TextView tv = new TextView(this);
-            String text =
-                    m.date + "\n" +
-                    "Organizer: " + m.organizer + "\n" +
-                    "Company: " + m.companyName + "\n" +
-                    "Contact: " + m.contact + "\n" +
-                    "Description: " + shortenText(m.description);
+                cv.setContentPadding(15, 15, 15, 15);
+                cv.setPreventCornerOverlap(false);
+                cv.setRadius(9);
+                cv.setUseCompatPadding(true);
 
-            tv.setText(text);
-            tv.setTextSize(18);
-            tv.setTextColor(getColor(R.color.zesamBlack));
+                TextView tv = new TextView(this);
+                String text =
+                        m.date + "\n" +
+                                "Organizer: " + m.organizer + "\n" +
+                                "Company: " + m.companyName + "\n" +
+                                "Contact: " + m.contact + "\n" +
+                                "Description: " + shortenText(m.description);
 
-            cv.addView(tv);
+                tv.setText(text);
+                tv.setTextSize(18);
+                tv.setTextColor(getColor(R.color.zesamBlack));
 
-            ll.addView(cv);
+                cv.addView(tv);
+
+                ll.addView(cv);
+            }
         }
-
     }
 
     public String shortenText(String text) {
