@@ -27,7 +27,7 @@ public class Root extends AppCompatActivity {
     }
 
     public void startRecordSalesMeeting(View v) {
-        Intent intent = new Intent(this, CreateMeeting.class);
+        Intent intent = new Intent(this, PickAccountSpinner.class);
         startActivity(intent);
     }
 }
