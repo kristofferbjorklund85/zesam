@@ -231,7 +231,7 @@ public class CreateMeeting extends AppCompatActivity {
     }
 
     public void photo(View v) {
-        Toast toast = Toast.makeText(act, "Photo functionailty is not implemented", Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(act, "Photo functionailty is not yet implemented", Toast.LENGTH_SHORT);
         toast.show();
     }
 }
