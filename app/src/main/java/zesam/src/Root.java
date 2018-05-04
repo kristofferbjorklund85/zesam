@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 public class Root extends AppCompatActivity {
     @Override
@@ -14,6 +15,9 @@ public class Root extends AppCompatActivity {
 
         Toolbar t = (Toolbar) findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
+
+        Button b = (Button) findViewById(R.id.back_button);
+        b.setVisibility(View.INVISIBLE);
     }
 
     public void startListMeetings(View v) {
