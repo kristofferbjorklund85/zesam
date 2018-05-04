@@ -30,7 +30,7 @@ public class Login extends AppCompatActivity{
     @Override
     protected void onResume() {
         super.onResume();
-        Intent intent = new Intent(this, PickAccountSpinner.class);
+        Intent intent = new Intent(this, Root.class);
         startActivity(intent);
     }
 

@@ -45,7 +45,7 @@ public class PickAccountSpinner extends AppCompatActivity {
         sContacts.setVisibility(View.INVISIBLE);
         tContact = (TextView) findViewById(R.id.contact_text);
         tContact.setVisibility(View.INVISIBLE);
-        createButton = (Button) findViewById(R.id.start_create_meeting_button);
+        createButton = (Button) findViewById(R.id.create_meeting_button);
         createButton.setVisibility(View.INVISIBLE);
 
         Permissions.checkLocationPermission(this);
