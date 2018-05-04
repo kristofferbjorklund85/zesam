@@ -25,8 +25,7 @@ public class ListMeetings extends AppCompatActivity {
         Toolbar t = findViewById(R.id.toolbar_logged_in);
         setSupportActionBar(t);
 
-        fd = new FakeData();
-        list = fd.getFutureMeetings();
+        list = MeetingSingleton.getMeetList();
         ll = findViewById(R.id.linelay);
 
         initCards();
@@ -42,7 +41,6 @@ public class ListMeetings extends AppCompatActivity {
             cv.setRadius(9);
             cv.setUseCompatPadding(true);
 
-            //REMOVE
             TextView tv = new TextView(this);
             String text =
                     m.date + "\n" +

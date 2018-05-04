@@ -70,7 +70,7 @@ public class PlanMeeting extends AppCompatActivity {
             }
         }
 
-        Log.d("List: ", "" + importList.size());
+        MeetingSingleton.setMeetList(importList);
 
         Intent intent = new Intent(this, ListMeetings.class);
         startActivity(intent);
