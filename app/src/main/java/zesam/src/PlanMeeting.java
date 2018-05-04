@@ -51,8 +51,8 @@ public class PlanMeeting extends AppCompatActivity {
     }
 
     public String shortenText(String text) {
-        if(text.length() > 30) {
-            text = text.substring(0,27) + "...";
+        if(text.length() > 45) {
+            text = text.substring(0,42) + "...";
         }
 
         return text;
@@ -74,6 +74,7 @@ public class PlanMeeting extends AppCompatActivity {
 
         Intent intent = new Intent(this, ListMeetings.class);
         startActivity(intent);
+        finish();
     }
 
     public void logOut(View v) {
